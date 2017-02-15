@@ -2,7 +2,7 @@
 % Please edit documentation in R/AnDec.R
 \name{AnDec}
 \alias{AnDec}
-\title{AnDec - ANOVA decomposition of `inData` according to `levels`}
+\title{ANOVA decomposition}
 \usage{
 AnDec(inData, levels)
 }
@@ -15,6 +15,6 @@ AnDec(inData, levels)
 An object containing ANOVA-decompositioned data
 }
 \description{
-AnDec - ANOVA decomposition of `inData` according to `levels`
+ANOVA decomposition of `inData` according to `levels`
 }
 

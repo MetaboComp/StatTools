@@ -1,5 +1,6 @@
-#' AnDec - ANOVA decomposition of `inData` according to `levels`
+#' ANOVA decomposition
 #'
+#' ANOVA decomposition of `inData` according to `levels`
 #' @param inData A matrix/data.frame with inData (samples as rows, variables as columns)
 #' @param levels A matrix/data.frame with levels (one factor per column, multiple levels per factor)
 #' @return An object containing ANOVA-decompositioned data
