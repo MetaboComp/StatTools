@@ -4,12 +4,14 @@
 \alias{AnDec}
 \title{ANOVA decomposition}
 \usage{
-AnDec(inData, levels)
+AnDec(inData, levels, scale = "no")
 }
 \arguments{
 \item{inData}{A matrix/data.frame with inData (samples as rows, variables as columns)}
 
-\item{levels}{A matrix/data.frame with levels (one factor per column, multiple levels per factor)}
+\item{levels}{A matrix/data.frame with levels in (one factor per column, multiple levels per factor)}
+
+\item{scale}{If `no` (default) then no scaling. If `sd` scales to sd=1 per variable. If vector scales variables according to defined scaling factor.}
 }
 \value{
 An object containing ANOVA-decompositioned data
