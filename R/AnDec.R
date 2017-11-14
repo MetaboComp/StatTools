@@ -40,7 +40,7 @@ AnDec=function(inData,levels,scale='no') {
     levMat=matrix(nrow=nSamp,ncol=nVar,dimnames=list(rownames(inData),colnames(inData))) # Prepare full level-averaged matrix
     for (l in 1:nLev) {
       wh.lev=levelF==levs[l] # Extract observations at this level
-      lev[l,]=apply(Resid[wh.lev,],2,mean) # average per level and store
+      lev[l,]=apply(Resid[wh.lev,,drop=F],2,mean) # average per level and store
       levMat[wh.lev,]=lev[rep(l,sum(wh.lev)),]
     }
     factorList[[f]]=lev

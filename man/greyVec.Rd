@@ -19,4 +19,3 @@ A character vector with greyscale names
 \description{
 Return a greyscale vector corresponding to values in vector (useful for plotting colors according to values)
 }
-

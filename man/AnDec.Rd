@@ -19,4 +19,3 @@ An object containing ANOVA-decompositioned data
 \description{
 ANOVA decomposition of `inData` according to `levels`
 }
-

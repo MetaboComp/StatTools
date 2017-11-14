@@ -19,4 +19,3 @@ Vector with new values
 \description{
 Switch values in vector
 }
-
