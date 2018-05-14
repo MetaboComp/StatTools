@@ -8,5 +8,9 @@
 #' @export
 switchNames=function(vector,old,new) {
   if(is.null(names(vector))) names(vector)=vector
-  sapply(vector,function(x) new[old==x])
+  whichChange=vector%in%old
+  vectorSubst=vector[whichChange]
+  vectorSubst=sapply(vectorSubst,function(x) new[old==x])
+  vector[whichChange]=vectorSubst
+  return(vector)
 }
