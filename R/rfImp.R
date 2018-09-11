@@ -5,29 +5,37 @@
 #' @param tolerance Tolerance criterion (between two iterations) to accept imputed value
 #' @param ntree Number of trees per forest
 #' @param mtry Number of variables to choose from at each node
-#' @param guess 1st guess (defaults to median imputation)
+#' @param guess 1st guess ("median", i.e. median per feature; "minVar", minimum per variable (default); "minTotal", minimum of all variables; A matrix (imputed/full data matrix))
 #' @param verbose Boolean for verbose output
 #' @param parallel Whether to perform imputation in parallel (register backend if TRUE!)
 #'
 #' @return Object (list)
 #' @export
 rfImp=function(MAT,maxIter=15,tolerance=1e-2,ntree=100,mtry=5,guess,verbose=F,parallel=F) {
+  MAT=as.matrix(MAT)
   library(doParallel)
   oldw <- getOption("warn")
   options(warn = -1)
   library(randomForest)
-  NAs=whichNA=which(is.na(MAT),arr.ind = T)
-  if (missing(guess)) {
-    unikCol=sort(unique(whichNA[,2]))
-    rfPT=MAT  # Perform median imputation as first guess
-    for (c in unikCol) {
-      vect=MAT[,c]
-      median=median(vect,na.rm = T)
-      vect[is.na(vect)]=median
-      rfPT[,c]=vect
+  NAs=whichNA=which(!is.finite(MAT),arr.ind = T)
+  if (missing(guess)) guess='minVar'
+  if (is.null(dim(guess))) {
+    cat('First guess from:',guess ,'(see ?rfImp for details) \n')
+    rfPT=MAT
+    if (guess=='minTotal') {
+      rfPT[whichNA]=min(MAT,na.rm=T)
+    } else {
+      unikCol=sort(unique(whichNA[,2]))
+      for (c in unikCol) {
+        vect=MAT[,c]
+        imput1=ifelse(guess=='median', median(vect, na.rm = T), min(vect, na.rm = T)) # median or minimum per variable
+        vect[is.na(vect)]=imput1
+        rfPT[,c]=vect
+      }
     }
-    cat('First guess from feature median imputation \n')
   } else {
+    if(dim(guess)!=dim(MAT)) stop("matrix dimensions of guess don't match MAT")
+    cat('First guess from user-specified matrix \n')
     rfPT=guess
   }
   nSamp=nrow(rfPT)

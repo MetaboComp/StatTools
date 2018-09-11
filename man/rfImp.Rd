@@ -4,8 +4,8 @@
 \alias{rfImp}
 \title{Perform random forest imputation of missing values}
 \usage{
-rfImp(MAT, maxIter = 15, tolerance = 0.01, ntree = 100, mtry = 5, guess,
-  verbose = F, parallel = F)
+rfImp(MAT, maxIter = 15, tolerance = 0.01, ntree = 100, mtry = 5,
+  guess, verbose = F, parallel = F)
 }
 \arguments{
 \item{MAT}{Indata matrix}
@@ -18,7 +18,7 @@ rfImp(MAT, maxIter = 15, tolerance = 0.01, ntree = 100, mtry = 5, guess,
 
 \item{mtry}{Number of variables to choose from at each node}
 
-\item{guess}{1st guess (defaults to median imputation)}
+\item{guess}{1st guess ("median", i.e. median per feature; "minVar", minimum per variable (default); "minTotal", minimum of all variables; A matrix (imputed/full data matrix))}
 
 \item{verbose}{Boolean for verbose output}
 
