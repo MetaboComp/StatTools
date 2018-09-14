@@ -5,7 +5,7 @@
 \title{Perform random forest imputation of missing values}
 \usage{
 rfImp(MAT, maxIter = 15, tolerance = 0.01, ntree = 100, mtry = 5,
-  guess, verbose = F, parallel = F)
+  guess = NULL, verbose = F, parallel = F)
 }
 \arguments{
 \item{MAT}{Indata matrix}
@@ -29,4 +29,15 @@ Object (list)
 }
 \description{
 Perform random forest imputation of missing values
+}
+\examples{
+MAT=matrix(runif(100000),nrow=40) # Generate synthetic (random) data
+MAT[sample(1:100000,size = 1000)] <- NA # Punch 1000 random holes in the data
+library(doParallel)
+nCore=detectCores()-1
+cl=makeCluster(nCore)
+registerDoParallel(cl)
+ImputationObject <- rfImp(MAT = MAT, tolerance=0.05, maxIter=5) # Quick'n'Dirty settings for imputation
+stopCluster(cl)
+MAT_Imp <- ImputationObject$peakTable
 }

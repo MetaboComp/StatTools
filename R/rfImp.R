@@ -11,14 +11,24 @@
 #'
 #' @return Object (list)
 #' @export
-rfImp=function(MAT,maxIter=15,tolerance=1e-2,ntree=100,mtry=5,guess,verbose=F,parallel=F) {
+#' @examples 
+#' MAT=matrix(runif(100000),nrow=40) # Generate synthetic (random) data
+#' MAT[sample(1:100000,size = 1000)] <- NA # Punch 1000 random holes in the data
+#' library(doParallel)
+#' nCore=detectCores()-1
+#' cl=makeCluster(nCore)
+#' registerDoParallel(cl)
+#' ImputationObject <- rfImp(MAT = MAT, tolerance=0.05, maxIter=5) # Quick'n'Dirty settings for imputation
+#' stopCluster(cl)
+#' MAT_Imp <- ImputationObject$peakTable
+rfImp=function(MAT,maxIter=15,tolerance=1e-2,ntree=100,mtry=5,guess=NULL,verbose=F,parallel=F) {
   MAT=as.matrix(MAT)
   library(doParallel)
   oldw <- getOption("warn")
   options(warn = -1)
   library(randomForest)
   NAs=whichNA=which(!is.finite(MAT),arr.ind = T)
-  if (missing(guess)) guess='minVar'
+  if (is.null(guess)) guess='minVar'
   if (is.null(dim(guess))) {
     cat('First guess from:',guess ,'(see ?rfImp for details) \n')
     rfPT=MAT
