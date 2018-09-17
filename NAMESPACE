@@ -3,6 +3,8 @@
 export(AnDec)
 export(filterClass)
 export(greyVec)
+export(mvImp)
+export(mvImpWrap)
 export(rfImp)
 export(rfImpWrap)
 export(switchNames)

@@ -16,4 +16,5 @@ Install `StatTools` package by:
 ## Version history
 version | date | comment
 :------ | :--- | :------
+0.0.910 | 2018-09-17 | Long-time-no-update (just added mvImp)
 0.0.900 | 2017-02-15 | AnDec
