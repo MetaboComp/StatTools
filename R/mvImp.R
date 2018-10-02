@@ -107,7 +107,7 @@ mvImp=function(MAT,method=c('RF','PLS'),maxIter=15,tolerance=1e-2,guess=NULL,rfM
           Pred <- predict(rfMod,newdata=impPT[predInd,-feat,drop=F])$yPred
         }
       } else {
-        plsMod <- pls(X=impPT[trainInd,-feat], Y=impPT[trainInd,feat], ncomp = nComp, mode = 'regression')
+        plsMod <- pls(X=impPT[trainInd,-feat], Y=impPT[trainInd,feat], ncomp = nComp, mode = 'regression',all.outputs = FALSE)
         Pred <- predict(plsMod, newdata = impPT[predInd,-feat,drop=FALSE])$predict[,,nComp]
         Pred[Pred<0] <- 0
       }

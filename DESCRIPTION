@@ -5,8 +5,9 @@ Authors@R: person("Carl", "Brunius", email = "carl.brunius@chalmers.se", role = 
 Description: Nifty Tools for Random Statistical Tasks
 Depends:
     R (>= 3.3.1)
-    mixOmics
-    randomForest
+Imports:
+    mixOmics,
+    randomForest,
     ranger
 License: What license is it under?
 Encoding: UTF-8
