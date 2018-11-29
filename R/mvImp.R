@@ -1,16 +1,17 @@
 #' Perform random forest imputation of missing values
 #'
 #' @param MAT Indata matrix
+#' @param guess 1st guess ("median", i.e. median per feature; "minVar", minimum per variable (default); "minTotal", minimum of all variables; A matrix (imputed/full data matrix))
 #' @param maxIter Maximum number of iterations
 #' @param tolerance Tolerance criterion (between two iterations) to accept imputed value
-#' @param ntree Number of trees per forest
-#' @param mtry Number of variables to choose from at each node
-#' @param guess 1st guess ("median", i.e. median per feature; "minVar", minimum per variable (default); "minTotal", minimum of all variables; A matrix (imputed/full data matrix))
-#' @param verbose Boolean for verbose output
-#' @param parallel Whether to perform imputation in parallel (register backend if TRUE!)
+#' @param forceZero Boolean for whether to force a lower imputation limit to zero (e.g. normal-scale concentrations & PLS; defaults to FALSE)
 #' @param method 'PLS' or 'RF
 #' @param nComp Number of PLS components (defaults to 2)
 #' @param rfMeth Which RF implementation to choose ('rf' (randomForest; default), 'ranger' or 'Rborist')
+#' @param ntree Number of trees per forest
+#' @param mtry Number of variables to choose from at each node
+#' @param verbose Boolean for verbose output
+#' @param parallel Whether to perform imputation in parallel (register backend if TRUE!)
 #'
 #' @return Object (list)
 #' @export
@@ -24,7 +25,7 @@
 #' ImputationObject <- rfImp(MAT = MAT, tolerance=0.05, maxIter=5) # Quick'n'Dirty settings for imputation
 #' stopCluster(cl)
 #' MAT_Imp <- ImputationObject$peakTable
-mvImp=function(MAT,method=c('RF','PLS'),maxIter=15,tolerance=1e-2,guess=NULL,rfMeth='rf',ntree=100,mtry=5,nComp=2,verbose=FALSE,parallel=FALSE) {
+mvImp=function(MAT,method=c('RF','PLS'),maxIter=15,tolerance=1e-2,guess=NULL,forceZero=FALSE,rfMeth='rf',ntree=100,mtry=5,nComp=2,verbose=FALSE,parallel=FALSE) {
   library(doParallel)
   if(missing(method)) method <- 'RF'
   method=match.arg(method)
@@ -109,8 +110,8 @@ mvImp=function(MAT,method=c('RF','PLS'),maxIter=15,tolerance=1e-2,guess=NULL,rfM
       } else {
         plsMod <- pls(X=impPT[trainInd,-feat], Y=impPT[trainInd,feat], ncomp = nComp, mode = 'regression',all.outputs = FALSE)
         Pred <- predict(plsMod, newdata = impPT[predInd,-feat,drop=FALSE])$predict[,,nComp]
-        Pred[Pred<0] <- 0
       }
+      if (forceZero) Pred[Pred<0] <- 0
       if (verbose) cat('\n')
       return(Pred)
     }

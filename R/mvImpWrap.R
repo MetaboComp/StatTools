@@ -5,7 +5,8 @@
 #' for the 2nd iteration which has "nicer" settings.
 #'
 #' @param MAT Matrix for imputation; samples in rows, variables in columns
-#' @param guess Initial guess (see rfImp; defaults to rfImp default)
+#' @param guess Initial guess (see mvImp; defaults to mvImp default)
+#' @param forceZero Boolean for whether to force a lower imputation limit to zero (see mvImp; defaults to mvImp default)
 #' @param nCore Number of slave processes (defaults to detectCores()-1)
 #' @param tol1 Tolerance in 1st iteration (defaults to 0.05)
 #' @param n1 MaxIter for 1st iteration (defaults to 15)
@@ -22,7 +23,7 @@
 #' MAT[sample(1:100000,size = 1000)] <- NA # Punch 1000 random holes in the data
 #' MAT_Imp <- rfImpWrap(MAT = MAT) # Imputation using default values
 
-mvImpWrap=function(MAT,method=c('PLS','RF'),rfMeth=c('rf','Rborist','ranger'),guess=NULL,nComp=2,nCore,tol1=0.05,n1=15,tol2=0.025,n2=60) {
+mvImpWrap=function(MAT,guess=NULL,forceZero=FALSE,method=c('PLS','RF'),rfMeth=c('rf','Rborist','ranger'),nComp=2,nCore,tol1=0.05,n1=15,tol2=0.025,n2=60) {
   library(doParallel)
   if(missing(method)) method <- 'RF'
   method=match.arg(method)
@@ -34,7 +35,7 @@ mvImpWrap=function(MAT,method=c('PLS','RF'),rfMeth=c('rf','Rborist','ranger'),gu
   cat('\nFIRST ROUND: Imputation with "sloppy" settings\n')
   cat('Tolerance:',tol1,'\n')
   cat('maxIter:  ',n1,'\n')
-  imp <- mvImp(MAT = MAT, method=method, rfMeth=rfMeth, nComp=nComp, guess = guess, maxIter = n1, tolerance = tol1, parallel = TRUE)
+  imp <- mvImp(MAT = MAT, forceZero=forceZero, method=method, rfMeth=rfMeth, nComp=nComp, guess = guess, maxIter = n1, tolerance = tol1, parallel = TRUE)
   time2 <- proc.time()[3]
   cat('\n\nSECOND ROUND: Imputation with "nicer" settings and 1st guess from FIRST ROUND\n')
   cat('Tolerance:',tol2,'\n')

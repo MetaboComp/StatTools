@@ -5,8 +5,8 @@
 \title{Perform random forest imputation of missing values}
 \usage{
 mvImp(MAT, method = c("RF", "PLS"), maxIter = 15, tolerance = 0.01,
-  guess = NULL, rfMeth = "rf", ntree = 100, mtry = 5, nComp = 2,
-  verbose = FALSE, parallel = FALSE)
+  guess = NULL, forceZero = FALSE, rfMeth = "rf", ntree = 100,
+  mtry = 5, nComp = 2, verbose = FALSE, parallel = FALSE)
 }
 \arguments{
 \item{MAT}{Indata matrix}
@@ -18,6 +18,8 @@ mvImp(MAT, method = c("RF", "PLS"), maxIter = 15, tolerance = 0.01,
 \item{tolerance}{Tolerance criterion (between two iterations) to accept imputed value}
 
 \item{guess}{1st guess ("median", i.e. median per feature; "minVar", minimum per variable (default); "minTotal", minimum of all variables; A matrix (imputed/full data matrix))}
+
+\item{forceZero}{Boolean for whether to force a lower imputation limit to zero (e.g. normal-scale concentrations & PLS; defaults to FALSE)}
 
 \item{rfMeth}{Which RF implementation to choose ('rf' (randomForest; default), 'ranger' or 'Rborist')}
 

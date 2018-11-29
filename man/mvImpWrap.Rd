@@ -4,18 +4,20 @@
 \alias{mvImpWrap}
 \title{Two-stage random forest imputation}
 \usage{
-mvImpWrap(MAT, method = c("PLS", "RF"), rfMeth = c("rf", "Rborist",
-  "ranger"), guess = NULL, nComp = 2, nCore, tol1 = 0.05, n1 = 15,
-  tol2 = 0.025, n2 = 60)
+mvImpWrap(MAT, guess = NULL, forceZero = FALSE, method = c("PLS",
+  "RF"), rfMeth = c("rf", "Rborist", "ranger"), nComp = 2, nCore,
+  tol1 = 0.05, n1 = 15, tol2 = 0.025, n2 = 60)
 }
 \arguments{
 \item{MAT}{Matrix for imputation; samples in rows, variables in columns}
 
+\item{guess}{Initial guess (see mvImp; defaults to mvImp default)}
+
+\item{forceZero}{Boolean for whether to force a lower imputation limit to zero (see mvImp; defaults to mvImp default)}
+
 \item{method}{'PLS' or 'RF}
 
 \item{rfMeth}{Which RF implementation to choose ('rf' (randomForest; default), 'ranger' or 'Rborist')}
-
-\item{guess}{Initial guess (see rfImp; defaults to rfImp default)}
 
 \item{nComp}{Number of PLS components (defaults to 2)}
 
