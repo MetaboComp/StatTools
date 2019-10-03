@@ -1,10 +1,19 @@
 # StatTools
-A collection of tools for random statistical tasks
+A collection of tools for random statistical (and other) tasks
 
 ## Tools
 Tool | Description
 :--- | :----------
+AggregateOTUs | aggregation of microbiota OTUs on different taxonomic levels
 AnDec | ANOVA Decomposition
+filterClass | remove variables that are poorly populated by class
+greyVec | convert numeric values to grey scale
+mvImp | multivariate imputation (PLS and RF)
+mvImpWrap | wrapper for mvImpWrap for automatic two-stage imputation and parallelisation
+normalise | different normalisation options (ripped from some other package; don't remember which)
+rfImp | deprecated. see mvImp
+rfImpWrap | deprecated. see mvImpWrap
+switchNames | switch names in a vector from old key to new key
 
 ## Installation
 Install `devtools` to be able to install packages from Git repositories.
@@ -16,5 +25,6 @@ Install `StatTools` package by:
 ## Version history
 version | date | comment
 :------ | :--- | :------
+0.0.911 | 2019-10-03 | Added aggregateOTUs
 0.0.910 | 2018-09-17 | Long-time-no-update (just added mvImp)
 0.0.900 | 2017-02-15 | AnDec
