@@ -25,6 +25,7 @@ Install `StatTools` package by:
 ## Version history
 version | date | comment
 :------ | :--- | :------
+0.0.912 | 2019-10-23 | Added plotDens()
 0.0.911 | 2019-10-03 | Added aggregateOTUs
 0.0.910 | 2018-09-17 | Long-time-no-update (just added mvImp)
 0.0.900 | 2017-02-15 | AnDec
