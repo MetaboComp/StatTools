@@ -11,6 +11,7 @@ greyVec | convert numeric values to grey scale
 mvImp | multivariate imputation (PLS and RF)
 mvImpWrap | wrapper for mvImpWrap for automatic two-stage imputation and parallelisation
 normalise | different normalisation options (ripped from some other package; don't remember which)
+plotDens | 2D plot with histograms and densities on the margins
 rfImp | deprecated. see mvImp
 rfImpWrap | deprecated. see mvImpWrap
 switchNames | switch names in a vector from old key to new key
