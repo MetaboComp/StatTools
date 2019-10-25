@@ -4,7 +4,7 @@
 \alias{getTaxonomy}
 \title{Extract phylogenetic information at different taxonomic levels from character strings}
 \usage{
-getTaxonomy(taxon, split1 = ";", split2 = "__", depth = 6)
+getTaxonomy(taxon, split1 = ";", split2 = "__", depth = 7)
 }
 \arguments{
 \item{taxon}{Character with OTU taxonomic information (e.g. "D_0__Bacteria;D_1__Firmicutes;D_2__Clostridia;D_3__Clostridiales;D_4__Lachnospiraceae;D_5__Blautia" ...)}
@@ -13,7 +13,7 @@ getTaxonomy(taxon, split1 = ";", split2 = "__", depth = 6)
 
 \item{split2}{Splitting character within taxonomic levels (e.g. "__" which is default)}
 
-\item{depth}{At what taxonomic level to truncate (defaults to 6 which normally corresponds to genus)}
+\item{depth}{At what taxonomic level to truncate (defaults to 7 which normally corresponds to species)}
 }
 \value{
 A data frame with taxonomic level information in columns
