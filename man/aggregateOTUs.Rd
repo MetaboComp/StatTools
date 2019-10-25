@@ -4,14 +4,14 @@
 \alias{aggregateOTUs}
 \title{Aggregate OTUs on different taxonomic levels}
 \usage{
-aggregateOTUs(otu, tax, level)
+aggregateOTUs(otu, tax, level = 6)
 }
 \arguments{
 \item{otu}{a table of OTUs (columns) with samples in rows}
 
 \item{tax}{a table with classification (levels {kingdom, phylum, etc} in columns and OTUs in rows)}
 
-\item{level}{Which level to aggregate on (corresponding to column in `tax`)}
+\item{level}{Which level to aggregate on (corresponding to column in `tax`, defaults to 6 which normally corresponds to genus)}
 }
 \value{
 A list with:

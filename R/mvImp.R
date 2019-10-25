@@ -95,6 +95,7 @@ mvImp=function(MAT,method=c('RF','PLS'),maxIter=15,tolerance=1e-2,guess=NULL,for
       # Actual imputation
       if (method=='RF') {
         if (rfMeth=='rf') {
+          if(mtry>=ncol(MAT)) mtry <- ncol(MAT)-1
           # randomForest implementation
           rfMod=randomForest(x=impPT[trainInd,-feat],y=impPT[trainInd,feat],ntree=ntree,mtry=mtry)
           Pred=predict(rfMod,newdata=impPT[predInd,-feat,drop=F])

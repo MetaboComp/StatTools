@@ -2,7 +2,7 @@
 #'
 #' @param otu a table of OTUs (columns) with samples in rows
 #' @param tax a table with classification (levels {kingdom, phylum, etc} in columns and OTUs in rows)
-#' @param level Which level to aggregate on (corresponding to column in `tax`)
+#' @param level Which level to aggregate on (corresponding to column in `tax`, defaults to 6 which normally corresponds to genus)
 #'
 #' @return A list with:
 #' @return `tax` Taxonomy up to the level of aggregation
@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' # genus <- aggregateOTUs(inData,taxonomyDF,6)
-aggregateOTUs <- function(otu,tax,level) {
+aggregateOTUs <- function(otu,tax,level=6) {
   library(dplyr)
   otu <- t(otu)
   tax <- tax[,1:level]

@@ -3,6 +3,7 @@
 export(AnDec)
 export(aggregateOTUs)
 export(filterClass)
+export(getTaxonomy)
 export(greyVec)
 export(mvImp)
 export(mvImpWrap)
