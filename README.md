@@ -6,6 +6,7 @@ Tool | Description
 :--- | :----------
 AggregateOTUs | aggregation of microbiota OTUs on different taxonomic levels
 AnDec | ANOVA Decomposition
+biplotPCA | Make nice-looking score/loading biplot of PCA including several useful arguments for labels, colors, etc
 filterClass | remove variables that are poorly populated by class
 getTaxonomy | Extract phylogenetic information at different taxonomic levels from character strings
 greyVec | convert numeric values to grey scale
@@ -27,6 +28,7 @@ Install `StatTools` package by:
 ## Version history
 version | date | comment
 :------ | :--- | :------
+0.0.914 | 2019-11-18 | Added biplotPCA()
 0.0.913 | 2019-10-25 | Added getTaxonomy()
 0.0.912 | 2019-10-23 | Added plotDens()
 0.0.911 | 2019-10-03 | Added aggregateOTUs()

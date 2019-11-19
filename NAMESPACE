@@ -2,6 +2,7 @@
 
 export(AnDec)
 export(aggregateOTUs)
+export(biplotPCA)
 export(filterClass)
 export(getTaxonomy)
 export(greyVec)
