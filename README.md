@@ -19,11 +19,17 @@ rfImpWrap | deprecated. see mvImpWrap
 switchNames | switch names in a vector from old key to new key
 
 ## Installation
-Install `devtools` to be able to install packages from Git repositories.
+Install `remotes` to be able to install packages from Git repositories.
+```
+install.packages('remotes')
+```
 
 Install `StatTools` package by:
+```
+library(remotes)
+install_gitlab('CarlBrunius/StatTools')
 
-`devtools::install_git("https://gitlab.com/CarlBrunius/StatTools.git")`
+```
 
 ## Version history
 version | date | comment
