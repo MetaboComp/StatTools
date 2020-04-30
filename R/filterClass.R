@@ -1,6 +1,6 @@
 #' Filter out features based on presence in classes
 #' 
-#' To be kept, a feature need to be present in ≥`ratio` in ≥class
+#' To be kept, a feature need to be present in ≥`ratio` in ≥1 class
 #' @param table Feature matrix (samples in rows, features in columns)
 #' @param classes Vector of sample classes
 #' @param ratio Ratio for decision keep/discard
