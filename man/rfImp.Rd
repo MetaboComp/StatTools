@@ -4,8 +4,16 @@
 \alias{rfImp}
 \title{Perform random forest imputation of missing values}
 \usage{
-rfImp(MAT, maxIter = 15, tolerance = 0.01, ntree = 100, mtry = 5,
-  guess = NULL, verbose = F, parallel = F)
+rfImp(
+  MAT,
+  maxIter = 15,
+  tolerance = 0.01,
+  ntree = 100,
+  mtry = 5,
+  guess = NULL,
+  verbose = F,
+  parallel = F
+)
 }
 \arguments{
 \item{MAT}{Indata matrix}

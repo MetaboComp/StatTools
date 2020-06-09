@@ -4,9 +4,19 @@
 \alias{mvImpWrap}
 \title{Two-stage random forest imputation}
 \usage{
-mvImpWrap(MAT, guess = NULL, forceZero = FALSE, method = c("PLS",
-  "RF"), rfMeth = c("rf", "Rborist", "ranger"), nComp = 2, nCore,
-  tol1 = 0.05, n1 = 15, tol2 = 0.025, n2 = 60)
+mvImpWrap(
+  MAT,
+  guess = NULL,
+  forceZero = FALSE,
+  method = c("PLS", "RF"),
+  rfMeth = c("rf", "Rborist", "ranger"),
+  nComp = 2,
+  nCore,
+  tol1 = 0.05,
+  n1 = 15,
+  tol2 = 0.025,
+  n2 = 60
+)
 }
 \arguments{
 \item{MAT}{Matrix for imputation; samples in rows, variables in columns}

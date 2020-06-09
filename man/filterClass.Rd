@@ -17,7 +17,7 @@ filterClass(table, classes, ratio = 0.5)
 Feature table filtered by class presence
 }
 \description{
-To be kept, a feature need to be present in ≥`ratio` in ≥class
+To be kept, a feature need to be present in ≥`ratio` in ≥1 class
 }
 \examples{
 otuRW=StatTools::filterClass(otuRW,rep(c('rye','wheat'),each=nRW),ratio = 1/3)

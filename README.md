@@ -34,6 +34,7 @@ install_gitlab('CarlBrunius/StatTools')
 ## Version history
 version | date | comment
 :------ | :--- | :------
+0.0.915 | 2020-06-09 | Added pStar()
 0.0.914 | 2019-11-18 | Added biplotPCA()
 0.0.913 | 2019-10-25 | Added getTaxonomy()
 0.0.912 | 2019-10-23 | Added plotDens()

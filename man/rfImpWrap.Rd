@@ -4,8 +4,15 @@
 \alias{rfImpWrap}
 \title{Two-stage random forest imputation}
 \usage{
-rfImpWrap(MAT, guess = NULL, nCore, tol1 = 0.05, n1 = 15,
-  tol2 = 0.025, n2 = 60)
+rfImpWrap(
+  MAT,
+  guess = NULL,
+  nCore,
+  tol1 = 0.05,
+  n1 = 15,
+  tol2 = 0.025,
+  n2 = 60
+)
 }
 \arguments{
 \item{MAT}{Matrix for imputation; samples in rows, variables in columns}

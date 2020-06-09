@@ -1,6 +1,6 @@
 Package: StatTools
 Title: Nifty Tools for Random Statistical Tasks
-Version: 0.0.914
+Version: 0.0.915
 Authors@R: person("Carl", "Brunius", email = "carl.brunius@chalmers.se", role = c("aut", "cre"))
 Description: Nifty Tools for Random Statistical Tasks
 Depends:
@@ -12,4 +12,4 @@ Imports:
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0

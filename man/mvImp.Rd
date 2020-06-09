@@ -4,9 +4,20 @@
 \alias{mvImp}
 \title{Perform random forest imputation of missing values}
 \usage{
-mvImp(MAT, method = c("RF", "PLS"), maxIter = 15, tolerance = 0.01,
-  guess = NULL, forceZero = FALSE, rfMeth = "rf", ntree = 100,
-  mtry = 5, nComp = 2, verbose = FALSE, parallel = FALSE)
+mvImp(
+  MAT,
+  method = c("RF", "PLS"),
+  maxIter = 15,
+  tolerance = 0.01,
+  guess = NULL,
+  forceZero = FALSE,
+  rfMeth = "rf",
+  ntree = 100,
+  mtry = 5,
+  nComp = 2,
+  verbose = FALSE,
+  parallel = FALSE
+)
 }
 \arguments{
 \item{MAT}{Indata matrix}

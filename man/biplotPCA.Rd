@@ -4,8 +4,19 @@
 \alias{biplotPCA}
 \title{PCA biplot}
 \usage{
-biplotPCA(pca, comps = 1:2, xCol, labPlSc = TRUE, labs, vars,
-  labPlLo = TRUE, pchSc = 16, colSc, colLo = 2, supLeg = FALSE)
+biplotPCA(
+  pca,
+  comps = 1:2,
+  xCol,
+  labPlSc = TRUE,
+  labs,
+  vars,
+  labPlLo = TRUE,
+  pchSc = 16,
+  colSc,
+  colLo = 2,
+  supLeg = FALSE
+)
 }
 \arguments{
 \item{pca}{A PCA model from prcomp()}
