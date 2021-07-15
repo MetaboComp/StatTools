@@ -14,9 +14,11 @@ mvImp | multivariate imputation (PLS and RF)
 mvImpWrap | wrapper for mvImpWrap for automatic two-stage imputation and parallelisation
 normalise | different normalisation options (ripped from some other package; don't remember which)
 plotDens | 2D plot with histograms and densities on the margins
+pStar | return stars from a vector of p-values
 rfImp | deprecated. see mvImp
 rfImpWrap | deprecated. see mvImpWrap
 switchNames | switch names in a vector from old key to new key
+venn | handy function to plot venn.diagram() in plot window
 
 ## Installation
 Install `remotes` to be able to install packages from Git repositories.
@@ -34,6 +36,7 @@ install_gitlab('CarlBrunius/StatTools')
 ## Version history
 version | date | comment
 :------ | :--- | :------
+0.0.916 | 2021-07-15 | Added venn()
 0.0.915 | 2020-06-09 | Added pStar()
 0.0.914 | 2019-11-18 | Added biplotPCA()
 0.0.913 | 2019-10-25 | Added getTaxonomy()

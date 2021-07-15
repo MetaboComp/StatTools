@@ -10,5 +10,14 @@
 #' p_values <- runif(20)
 #' data.frame(p_values, p_star = pStar(p_values))
 pStar <- function(p) {
-  ifelse(p<0.001, '***', ifelse(p<0.01, '**', ifelse(p<0.05, '*', ifelse(p<0.1, "'", ''))))
+  ifelse(p < 0.001, 
+         '***', 
+         ifelse(p < 0.01, 
+                '**', 
+                ifelse(p < 0.05, 
+                       '*', 
+                       ifelse(p < 0.1, 
+                              "'", 
+                              ''))))
+  
 }
