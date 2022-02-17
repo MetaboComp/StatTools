@@ -8,7 +8,8 @@ Depends:
 Imports:
     mixOmics,
     randomForest,
-    ranger
+    ranger,
+    ppcor
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true

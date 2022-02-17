@@ -6,42 +6,10 @@
 1.numeric variables
 2.factor variables without order: non_ordinal factor variables}
 \usage{
-impute_ordinal(
-  ordinal,
-  guess = NULL,
-  forceZero = FALSE,
-  method = c("PLS", "RF"),
-  rfMeth = c("rf", "Rborist", "ranger"),
-  nComp = 2,
-  nCore,
-  tol1 = 0.05,
-  n1 = 15,
-  tol2 = 0.025,
-  n2 = 60
-)
+impute_ordinal(ordinal)
 }
 \arguments{
 \item{ordinal}{A dataframe with ordinal variables and numeric variables}
-
-\item{guess}{Initial guess (see mvImp; defaults to mvImp default)}
-
-\item{forceZero}{Boolean for whether to force a lower imputation limit to zero (see mvImp; defaults to mvImp default)}
-
-\item{method}{'PLS' or 'RF}
-
-\item{rfMeth}{Which RF implementation to choose ('rf' (randomForest; default), 'ranger' or 'Rborist')}
-
-\item{nComp}{Number of PLS components (defaults to 2)}
-
-\item{nCore}{Number of slave processes (defaults to detectCores()-1)}
-
-\item{tol1}{Tolerance in 1st iteration (defaults to 0.05)}
-
-\item{n1}{MaxIter for 1st iteration (defaults to 15)}
-
-\item{tol2}{Tolerance in 2nd iteration (defaults to 0.05)}
-
-\item{n2}{MaxIter for 2nd iteration (defaults to 15)}
 }
 \value{
 A dataframe with imputed values
@@ -61,7 +29,6 @@ Example: a<-factor(c(1,2,3)). When levels(a), the out put is 1,2,3. This is the 
         a<-Transform_fac_num(factor(c(1,2,3),levels=c("3","1","2"))). When levels(a), the output is 1,2,3.
 }
 \examples{
-
 install.packages("remotes")
 library(remotes)
 install_gitlab('CarlBrunius/MUVR')

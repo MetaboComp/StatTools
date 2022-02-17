@@ -20,16 +20,6 @@
 #'
 #' @param ordinal A dataframe with ordinal variables and numeric variables
 #' @param non-ordinal A dataframe with non-ordinal variables
-#' @param guess Initial guess (see mvImp; defaults to mvImp default)
-#' @param forceZero Boolean for whether to force a lower imputation limit to zero (see mvImp; defaults to mvImp default)
-#' @param nCore Number of slave processes (defaults to detectCores()-1)
-#' @param tol1 Tolerance in 1st iteration (defaults to 0.05)
-#' @param n1 MaxIter for 1st iteration (defaults to 15)
-#' @param tol2 Tolerance in 2nd iteration (defaults to 0.05)
-#' @param n2 MaxIter for 2nd iteration (defaults to 15)
-#' @param method 'PLS' or 'RF
-#' @param nComp Number of PLS components (defaults to 2)
-#' @param rfMeth Which RF implementation to choose ('rf' (randomForest; default), 'ranger' or 'Rborist')
 #' @return A dataframe with imputed values
 #' @export
 #' @examples
@@ -57,17 +47,7 @@
 #' f is the imputed data frame of d
 
 impute_all<-function(ordinal,
-                     non_ordinal,
-                     guess=NULL,
-                     forceZero=FALSE,
-                     method=c('PLS','RF'),
-                     rfMeth=c('rf','Rborist','ranger'),
-                     nComp=2,
-                     nCore,
-                     tol1=0.05,
-                     n1=15,
-                     tol2=0.025,
-                     n2=60){
+                     non_ordinal){
 ##1 Make the sequence of the levels for each factor variable should be the "default sequence". Save column names of dataframes.
   ordinal<-Transform_fac_num(ordinal)$dataframe           ##it will not be in comment in the package
   non_ordinal<-Transform_fac_num(non_ordinal)$dataframe   ##it will not be in comment in the package
@@ -121,17 +101,7 @@ impute_all<-function(ordinal,
 ############################################################
 ###2.4 impute the combined data frame (ordinal and non_ordinal one hot encoding) using mvImpWrap().
   big_matrix=cbind(ordinal,big_matrix)
-  imputed_big_matrix=mvImpWrap(big_matrix,
-                               guess=guess,
-                               forceZero=forceZero,
-                               method=method,
-                               rfMeth=rfMeth,
-                               nComp=nComp,
-                               nCore,
-                               tol1=tol1,
-                               n1=n1,
-                               tol2=tol2,
-                               n2=n2)
+  imputed_big_matrix=mvImpWrap(big_matrix)
   imputed_ordinal=imputed_big_matrix[,1:ncol(ordinal)]
   imputed_non_ordinal=imputed_big_matrix[,c((ncol(ordinal)+1):ncol(imputed_big_matrix))]
 
