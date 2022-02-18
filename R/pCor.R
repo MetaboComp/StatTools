@@ -22,52 +22,51 @@
 pCor <- function(X,
                  Y,
                  C
-) {colnamesX<-colnames(X)
-   colnamesC<-colnames(C)
-  if(ncol(X)==1){
+) {
+  if(is.null(dim(X))){
     Xframe=data.frame(X)
     colnamesX<-colnames(Xframe)
     X=as.numeric(X)
+    X<-data.frame(X)
     colnames(X)<-colnamesX
     } 
-  if(ncol(C)==1){
+  if(is.null(dim(C))){
     Cframe=data.frame(C)
     colnamesC<-colnames(Cframe)
     C=as.numeric(C)
+    C=data.frame(C)
     colnames(C)<-colnamesC
   } 
    
    
-  if(ncol(X)>1){
+  if(!is.null(dim(X))){
     colnamesX<-colnames(X)
   for(i in 1:ncol(X))
   {X[,i]=as.numeric(X[,i])
   
   }
-  
+  X=data.frame(X)
   colnames(X)<-colnamesX
   }
-   if(ncol(C)>1){
+   if(!is.null(dim(C))){
      colnamesC<-colnames(C)
      for(i in 1:ncol(C))
      {C[,i]=as.numeric(C[,i])
      
      }
-     
+      C=data.frame(C)
      colnames(C)<-colnamesC
    }
   result<-list()
   cor=NULL
-  X=data.frame(X)
   
-  if(class(Y)!="data.frame"){
+  
+  if(is.null(dim(Y))){
   Yframe=data.frame(Y)
   colnamesY<-colnames(Yframe)
-  rownamesY<-rownames(Yframe)
   Y=as.numeric(Y)
   Y=data.frame(Y)
   colnames(Y)<-colnamesY
-  rownames(Y)<-rownamesY
   }
   else{
     colnamesY<-colnames(Y)
@@ -75,9 +74,10 @@ pCor <- function(X,
     {Y[,i]=as.numeric(Y[,i])
     
     }
+    Y=data.frame(Y)
     colnames(Y)<-colnamesY
   }
-  C=data.frame(C)
+ 
   data=data.frame(X,Y,C)
   
   for (i in 1:ncol(X)){
