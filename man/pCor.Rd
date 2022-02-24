@@ -4,7 +4,7 @@
 \alias{pCor}
 \title{This function aims to construct one more flexible pcor()}
 \usage{
-pCor(X, Y, C)
+pCor(X, Y, C, cor_method = c("pearson", "kendall", "spearman"))
 }
 \arguments{
 \item{X}{A data frame of X variables (All variables needs to be numeric)}
@@ -12,6 +12,8 @@ pCor(X, Y, C)
 \item{Y}{A vector/dataframe of one Y variable (needs to be numeric)}
 
 \item{C}{A data frame of covariates (All variables needs to be numeric)}
+
+\item{cor_method}{from cor()}
 }
 \value{
 A vector with adjusted partial correlations
