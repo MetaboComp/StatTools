@@ -2,6 +2,7 @@
 #' @param X  A data frame of X variables (All variables needs to be numeric)
 #' @param Y  A vector/dataframe of one Y variable (needs to be numeric)
 #' @param C A data frame of covariates (All variables needs to be numeric)
+#' @param cor_method from cor()
 #' @return A vector with adjusted partial correlations
 #' @export
 #'
@@ -21,8 +22,12 @@
 
 pCor <- function(X,
                  Y,
-                 C
+                 C,
+                 cor_method=c("pearson", "kendall", "spearman")
 ) {
+  if(missing(cor_method)){cor_method="spearman"}
+  if(cor_method!="pearson"&cor_method!="kendall"&cor_method!="spearman"){stop("Wrong method, you idiot!")
+    }
   if(is.null(dim(X))){
     Xframe=data.frame(X)
     rownamesX<-rownames(Xframe)
@@ -66,8 +71,8 @@ pCor <- function(X,
      rownames(C)<-rownamesC
    }
   result<-list()
-  cor=NULL
-  
+  cor_estimate=NULL
+  cor_pvalue=NULL
   
   if(is.null(dim(Y))){
   Yframe=data.frame(Y)
@@ -77,8 +82,7 @@ pCor <- function(X,
   Y=data.frame(Y)
   colnames(Y)<-colnamesY
   rownames(Y)<-rownamesY
-  }
-  else{
+  }else{
     colnamesY<-colnames(Y)
     rownamesY<-rownames(Y)
     for(i in 1:ncol(Y))
@@ -98,13 +102,20 @@ pCor <- function(X,
     
     glmY <- glm(formula = as.formula(paste(colnames(Y),'~', paste(colnames(C),collapse="+"))),
                 data=data)
-    cor <- c(cor,
-             cor(resid(glmX),
-                 resid(glmY)))
+    cor_test<-cor.test(resid(glmX),
+             resid(glmY),
+             method=cor_method)
+    cor_estimate <- c(cor_estimate ,
+             cor_test$estimate)
+    cor_pvalue <- c(cor_pvalue,
+             cor_test$p.value)
   }
-  cor<-data.frame(cor)
-  rownames(cor)<-colnames(X)
-  result$cor<-cor
+  cor_estimate<-data.frame(cor_estimate)
+  cor_pvalue<-data.frame(cor_pvalue)
+  rownames(cor_estimate)<-colnames(X)
+  rownames(cor_pvalue)<-colnames(X)
+  result$cor_estimate<-cor_estimate
+  result$cor_pvalue<-cor_pvalue
   result$Y<-Y
   result$X<-X
   result$C<-C
