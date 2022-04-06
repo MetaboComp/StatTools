@@ -25,6 +25,7 @@ pCor <- function(X,
                  C,
                  cor_method=c("pearson", "kendall", "spearman")
 ) {
+  
   if(missing(cor_method)){cor_method="spearman"}
   if(cor_method!="pearson"&cor_method!="kendall"&cor_method!="spearman"){stop("Wrong method, you idiot!")
     }
@@ -36,7 +37,8 @@ pCor <- function(X,
     X<-data.frame(X)
     colnames(X)<-colnamesX
     rownames(X)<-rownamesX
-    } 
+  }
+  if(!missing(C)){
   if(is.null(dim(C))){
     Cframe=data.frame(C)
     rownamesC<-rownames(Cframe)
@@ -46,7 +48,7 @@ pCor <- function(X,
     colnames(C)<-colnamesC
     rownames(C)<-rownamesC
   } 
-   
+  } 
    
   if(!is.null(dim(X))){
     colnamesX<-colnames(X)
@@ -59,6 +61,8 @@ pCor <- function(X,
   colnames(X)<-colnamesX
   rownames(X)<-rownamesX
   }
+  
+  if(!missing(C)){
    if(!is.null(dim(C))){
      colnamesC<-colnames(C)
      rownamesC<-rownames(C)
@@ -70,6 +74,7 @@ pCor <- function(X,
       colnames(C)<-colnamesC
      rownames(C)<-rownamesC
    }
+  }
   result<-list()
   cor_estimate=NULL
   cor_pvalue=NULL
@@ -93,7 +98,7 @@ pCor <- function(X,
     colnames(Y)<-colnamesY
     rownames(Y)<-rownamesY
   }
- 
+  if(!missing(C)){
   data=data.frame(X,Y,C)
   
   for (i in 1:ncol(X)){
@@ -110,6 +115,28 @@ pCor <- function(X,
     cor_pvalue <- c(cor_pvalue,
              cor_test$p.value)
   }
+  result$C<-C
+  }
+  if(missing(C)){
+    data=data.frame(X,Y,C)
+    
+    for (i in 1:ncol(X)){
+      glmX <- glm(formula = as.formula(paste(colnames(X)[i],'~', paste(colnames(C),collapse="+"))),
+                  data=data)
+      
+      glmY <- glm(formula = as.formula(paste(colnames(Y),'~', paste(colnames(C),collapse="+"))),
+                  data=data)
+      cor_test<-cor.test(resid(glmX),
+                         resid(glmY),
+                         method=cor_method)
+      cor_estimate <- c(cor_estimate ,
+                        cor_test$estimate)
+      cor_pvalue <- c(cor_pvalue,
+                      cor_test$p.value)
+    }
+    
+  }
+  
   cor_estimate<-data.frame(cor_estimate)
   cor_pvalue<-data.frame(cor_pvalue)
   rownames(cor_estimate)<-colnames(X)
@@ -118,6 +145,6 @@ pCor <- function(X,
   result$cor_pvalue<-cor_pvalue
   result$Y<-Y
   result$X<-X
-  result$C<-C
+  
   return(result)
 }

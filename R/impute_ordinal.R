@@ -23,6 +23,8 @@
 #' library(remotes)
 #' install_gitlab('CarlBrunius/MUVR')
 #' library(MUVR)
+#' install_gitlab('YingxiaoYan/StatTools')
+#' library(StatTools)
 #' factor_1<-factor(c(rep("a",8),rep("b",8),rep("c",8),rep("d",5)))
 #' factor_2<-as.character(c(rep("f",5),rep("e",8),rep("h",5),rep("g",11)))
 #' d<-cbind(Xotu[,1:7],factor_1,factor_2,Yotu)
@@ -67,7 +69,7 @@ impute_ordinal<-function(ordinal){
   #############################################################################################################
 ###3 When doing imputation, the names of levels for factor variables are lost, this step is to gives the name back
   ###3.1 give back the level names of ordinal factor variables
-
+if(!is.null(factor_location)){
   for(i in 1:length(factor_location)){
     imputed_ordinal[,factor_location[i]]=round(imputed_ordinal[,factor_location[i]],0)
   }
@@ -117,6 +119,8 @@ impute_ordinal<-function(ordinal){
   imputed_ordinal=data.frame(relevel_matrix)
   colnames(imputed_ordinal)<-colnames_ordinal
   rownames(imputed_ordinal)<-rownames_ordinal
+}
+
   return(imputed_ordinal)
 
 }
