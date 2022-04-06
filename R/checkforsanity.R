@@ -6,6 +6,9 @@
 #' @return A table: The first row is how many values is "NA","NaN","negative",0,infinite. The second row is how many columns has this value
 #' @export
 #' @examples
+#' 
+#' 
+#' 
 checkforsanity<-function(data,
                          check=c("NA","NaN","negative","0","infinite"),
                          output=c("number","percentage")){
