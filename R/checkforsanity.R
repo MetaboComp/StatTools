@@ -1,3 +1,4 @@
+#' Check for sanity of a dataset
 #' @param data The dataset used for checking. It could be a dataframe or matrix
 #' @param check "NA","NaN","negative",0,infinite. The default value is NA
 #' @param output "number","percentage". The default value
