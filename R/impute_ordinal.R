@@ -40,7 +40,7 @@
 #' d[20,2]=NA
 #' e=Transform_fac_num(d)$dataframe
 #' f<-impute_ordinal(e)
-#' f is the imputed data frame of d
+#' # f is the imputed data frame of d
 
 impute_ordinal<-function(ordinal){
 ##1 Make the sequence of the levels for each factor variable should be the "default sequence".  Save column names of the dataframe.

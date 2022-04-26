@@ -50,5 +50,5 @@ d[20,1]=NA
 d[20,2]=NA
 e=Transform_fac_num(d)$dataframe
 f<-impute_ordinal(e)
-f is the imputed data frame of d
+# f is the imputed data frame of d
 }

@@ -2,6 +2,8 @@
 #' @param func A data frame with variables with class "numeric", "factor", "logical","character","ordered factor"
 #' @return A list of S3 methods cthat can match this function
 #' @export
+#' @examples
+#' checkforS3methods("predict")
 
 checkforS3methods<-function(func){
   result<-list()

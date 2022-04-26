@@ -15,3 +15,6 @@ A list of S3 methods cthat can match this function
 \description{
 checkforS3methods
 }
+\examples{
+checkforS3methods("predict")
+}

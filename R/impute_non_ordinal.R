@@ -29,7 +29,7 @@
 #
 #' e=Transform_fac_num(d)$dataframe
 #' f<-impute_non_ordinal(e)
-#' f is the imputed data frame of d
+#' # f is the imputed data frame of d
 
 impute_non_ordinal<-function(
                      non_ordinal){

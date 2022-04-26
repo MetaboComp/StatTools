@@ -39,5 +39,5 @@ d[28,2]=NA
 d[27,3]=NA
 e=Transform_fac_num(d)$dataframe
 f<-impute_non_ordinal(e)
-f is the imputed data frame of d
+# f is the imputed data frame of d
 }

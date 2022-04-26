@@ -19,13 +19,13 @@ Example: a<-factor(c(1,2,3)). When levels(a), the out put is 1,2,3. This is the 
         a<-Transform_fac_num(factor(c(1,2,3),levels=c("3","1","2"))). When levels(a), the output is 1,2,3.
 }
 \examples{
-install.packages("remotes")
-library(remotes)
-install_gitlab('CarlBrunius/MUVR')
-factor_1<-factor(c(rep("2",8),rep("3",8),rep("4",8),rep("1",5)),levels=c("3","1","2","4"))
-factor_2<-as.character(c(rep("f",5),rep("e",8),rep("h",5),rep("g",11)))
-d<-cbind(Xotu[,1:7],factor_1,factor_2,Yotu)
-e=Transform_fac_num(d)$dataframe
+#install.packages("remotes")
+#library(remotes)
+#install_gitlab('CarlBrunius/MUVR')
+#factor_1<-factor(c(rep("2",8),rep("3",8),rep("4",8),rep("1",5)),levels=c("3","1","2","4"))
+#factor_2<-as.character(c(rep("f",5),rep("e",8),rep("h",5),rep("g",11)))
+#d<-cbind(Xotu[,1:7],factor_1,factor_2,Yotu)
+#e=Transform_fac_num(d)$dataframe
 
 
 }

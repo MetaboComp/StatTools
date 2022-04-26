@@ -54,7 +54,6 @@ d[21,2]=NA
 d[20,1]=NA
 d[20,2]=NA
 e=Transform_fac_num(d)$dataframe
-f<-impute_all(e[,1:8],
-               e[,9:10])
-f is the imputed data frame of d
+f<-impute_all(e[,1:8],e[,9:10])
+#f is the imputed data frame of d
 }
