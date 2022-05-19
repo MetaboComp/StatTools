@@ -18,10 +18,10 @@
 # library(remotes)
 # install_gitlab("CarlBrunius/MUVR@MUVR2")
 # library(MUVR)
-# X1<-data.frame(Xotu[,1:10])
-# X2<-data.frame(Xotu[,1:13])
-# X3<-data.frame(Xotu[,9:15])
-# X4<-data.frame(Xotu[,16:20])
+# X1<-Xotu[,1:10]
+# X2<-Xotu[,1:13]
+# X3<-Xotu[,9:15]
+# X4<-Xotu[,16:20]
 # X<-list(X1=X1,X2=X2,X3=X3,X4=X4)
 # 
 # Z1<-c("a","b","c","d","e","f")
@@ -118,7 +118,7 @@ overlapping_check<-function(X){
   overlapping_list_names<-vector()
   for(i in 1:nrow(alldata_summary_unique)){
     
-    howmanyyes<-table(as.vector(as.matrix(alldata_summary_unique[i,])))[2]
+    howmanyyes<-table(as.vector(as.matrix(alldata_summary_unique[i,])))["yes"]
     list_name<-paste0("appear ",howmanyyes," time(s): in")
     for(j in 1:num_obj){
       if(alldata_summary_unique[i,j]=="yes"){
@@ -135,7 +135,7 @@ overlapping_check<-function(X){
   
   
   result$overlapping_list<-overlapping_list
-  names(result$overlapping_list)<-NULL
+
   names(result$overlapping_list)<-overlapping_list_names
   result$overlapping_list_names<-overlapping_list_names
   result$alldata_summary<-alldata_summary
@@ -203,7 +203,7 @@ overlapping_check<-function(X){
     
     
     
-    ##2.1 a matrix, row are values,columns are  objects
+    ##3.4 a matrix, row are values,columns are  objects
     #if a value appear in one object, 1, other wise 0
     alldata_summary<-matrix("no",
                             length(alldata),
@@ -219,7 +219,7 @@ overlapping_check<-function(X){
       }
     }
     
-    ##2.2 Find all the unique combinations of no and yes
+    ##3.5 Find all the unique combinations of no and yes
     alldata_summary_unique<-alldata_summary[!duplicated(alldata_summary),]
     rownames(alldata_summary_unique)<-NULL
     
@@ -244,11 +244,11 @@ overlapping_check<-function(X){
     }
     rownames(alldata_summary)<-rownames_alldata_summary
     
-    ##2.3 give overlapping list proper names
+    ##3.6 give overlapping list proper names
     overlapping_list_names<-vector()
     for(i in 1:nrow(alldata_summary_unique)){
       
-      howmanyyes<-table(as.vector(as.matrix(alldata_summary_unique[i,])))[2]
+      howmanyyes<-table(as.vector(as.matrix(alldata_summary_unique[i,])))["yes"]
       list_name<-paste0("appear ",howmanyyes," time(s): in")
       for(j in 1:num_obj){
         if(alldata_summary_unique[i,j]=="yes"){
@@ -260,7 +260,7 @@ overlapping_check<-function(X){
       
       
     }
-    ##2.4 give the name to the overlapping list of column
+    ##3.7 give the name to the overlapping list of column
     
     
     result$unique_columns<-alldata_unique
@@ -271,13 +271,7 @@ overlapping_check<-function(X){
     result$overlapping_list_names<-overlapping_list_names
     result$alldata_summary<-alldata_summary
     result$alldata_summary_unique<-alldata_summary_unique
-    
-    
-    
-    
-    
-    
-    
+
     
   }
   
