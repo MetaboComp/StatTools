@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' otuRW=StatTools::filterClass(otuRW,rep(c('rye','wheat'),each=nRW),ratio = 1/3)
+#otuRW=StatTools::filterClass(otuRW,rep(c('rye','wheat'),each=nRW),ratio = 1/3)
 filterClass=function(table,classes,ratio=.5) {
   Cls=sort(unique(classes))
   nSamp=length(classes)
