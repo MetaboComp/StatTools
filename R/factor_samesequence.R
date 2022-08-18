@@ -4,11 +4,16 @@
 #' 
 #' 
 #' @param X a factor variable
+#' @param level levels if want to manually set
+#' @param sequence default as F, if T normal factor
 #' @return X_factor
 #' @export
 #' 
 #' 
-factor_samesequence<-function(X){
+factor_samesequence<-function(X,level,sequence){
+  if(missing(level)){
+  if(missing(sequence)){sequence=F}
+  if(sequence==F){
   XX<-X
   X<-as.character(X)
   X_levels<-vector()   
@@ -18,5 +23,11 @@ factor_samesequence<-function(X){
     else{X_levels<-c(X_levels,X[i]) }
   }  
   X_factor<-factor(XX,levels=X_levels)
+  }
+  if(sequence==T){
+    X=factor(X,levels=unique(X))
+  }
+  }
+  if(!missing(level)){X<-factor(X,levels=level)}
   return(X_factor)
 }
