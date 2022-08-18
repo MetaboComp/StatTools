@@ -23,8 +23,3 @@ A table: The first row is how many values is "NA","NaN","negative",0,infinite. T
 \description{
 Check for sanity of a dataset
 }
-\examples{
-
-
-
-}

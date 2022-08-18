@@ -14,7 +14,7 @@
 #' @param non-ordinal A dataframe with non-ordinal variables
 #' @return A dataframe with imputed values
 #' @export
-#' @examples
+#' 
 #'
 #' install.packages("remotes")
 #' library(remotes)

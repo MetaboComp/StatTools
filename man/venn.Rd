@@ -11,9 +11,6 @@ venn(x, ...)
 
 \item{...}{Standard `venn.diagram()` arguments}
 }
-\value{
-
-}
 \description{
 Convenience function to draw a Venn diagram directly in the plot window without exporting to a file
 }

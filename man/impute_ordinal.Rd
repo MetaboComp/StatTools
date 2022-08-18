@@ -28,27 +28,3 @@ Example: a<-factor(c(1,2,3)). When levels(a), the out put is 1,2,3. This is the 
         a<-factor(c(1,2,3),levels=c("3","1","2")). When levels(a), the out put is 3,1,2. This is not "default sequence".
         a<-Transform_fac_num(factor(c(1,2,3),levels=c("3","1","2"))). When levels(a), the output is 1,2,3.
 }
-\examples{
-install.packages("remotes")
-library(remotes)
-install_gitlab('CarlBrunius/MUVR')
-library(MUVR)
-install_gitlab('YingxiaoYan/StatTools')
-library(StatTools)
-factor_1<-factor(c(rep("a",8),rep("b",8),rep("c",8),rep("d",5)))
-factor_2<-as.character(c(rep("f",5),rep("e",8),rep("h",5),rep("g",11)))
-d<-cbind(Xotu[,1:7],factor_1,factor_2,Yotu)
-d[29,10]=NA
-d[28,9]=NA
-d[27,8]=NA
-d[25,6]=NA
-d[24,5]=NA
-d[23,4]=NA
-d[22,3]=NA
-d[21,2]=NA
-d[20,1]=NA
-d[20,2]=NA
-e=Transform_fac_num(d)$dataframe
-f<-impute_ordinal(e)
-# f is the imputed data frame of d
-}

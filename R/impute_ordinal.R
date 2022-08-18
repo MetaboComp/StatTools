@@ -18,7 +18,7 @@
 
 #' @return A dataframe with imputed values
 #' @export
-#' @examples
+#'
 #' install.packages("remotes")
 #' library(remotes)
 #' install_gitlab('CarlBrunius/MUVR')
