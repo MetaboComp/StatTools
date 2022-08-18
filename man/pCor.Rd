@@ -21,13 +21,3 @@ A vector with adjusted partial correlations
 \description{
 This function aims to construct one more flexible pcor()
 }
-\examples{
-install.packages(remotes)
-library(remotes)
-install_gitlab('CarlBrunius/MUVR@MUVR2')
-library(MUVR)
-X=Xotu[,1:4]
-Y=as.numeric(Yotu)
-C=Xotu[,5:7]
-
-}

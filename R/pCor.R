@@ -6,7 +6,7 @@
 #' @return A vector with adjusted partial correlations
 #' @export
 #'
-#' @examples
+#' 
 #' install.packages(remotes)
 #' library(remotes)
 #' install_gitlab('CarlBrunius/MUVR@MUVR2')

@@ -11,7 +11,7 @@
 #'
 #' @return Object (list)
 #' @export
-#' @examples 
+#' 
 #' MAT=matrix(runif(100000),nrow=40) # Generate synthetic (random) data
 #' MAT[sample(1:100000,size = 1000)] <- NA # Punch 1000 random holes in the data
 #' library(doParallel)

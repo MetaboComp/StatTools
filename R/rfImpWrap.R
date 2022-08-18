@@ -13,7 +13,7 @@
 #'
 #' @return A data matrix with imputed values
 #' @export
-#' @examples 
+#' 
 #' MAT=matrix(runif(100000),nrow=40) # Generate synthetic (random) data
 #' MAT[sample(1:100000,size = 1000)] <- NA # Punch 1000 random holes in the data
 #' MAT_Imp <- rfImpWrap(MAT = MAT) # Imputation using default values
