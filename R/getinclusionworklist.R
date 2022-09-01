@@ -117,6 +117,7 @@ getinclusionworklist<- function(featurenames,  ## a
                           newname_format=newsamplename_format,
                           remove_rest = samplename_removerest)
     rownames(table)<- samplenames_new
+    
   }
 
   #### Figuring out which combinations of samples are the optimum combination
@@ -151,7 +152,7 @@ getinclusionworklist<- function(featurenames,  ## a
  
     if (is.vector(table)){  ## The scenario when there is only one column
       sampleSet$sampleNames <- c(sampleSet$sampleNames, 
-                                 rownames(Dataframe_Obj)[which.max(table)])
+                                 samplenames_new[which.max(table)])
       sampleSet$sampleFeatures[[i+1]] <- colnames(scorematrix)[which(!(colnames(scorematrix) %in% sampleSet$sampleFeatures[[i]]))]
     }else if (dim(table)[2]==0){
       table <- vector()
