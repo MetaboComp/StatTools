@@ -24,6 +24,10 @@
 
 #' @param mergesamples_withfarthermz To be developed, logical, this is only for the sake of people in CMSI to create method conveniently
 #' @param mergesamples_withfarthermz To be developed, default 10
+#' @param batch
+#' @param Date
+#' @param Week 
+#' @param phase
 #' @export
 #' @return sampleSet
 
@@ -32,7 +36,7 @@ getinclusionworklist<- function(featurenames,  ## a
                                 oldfeaturename_format,
                                 newfeaturename_format,
                                 featurename_removerest=F, 
-                                saveDir,   ## The name of the directory that you want to save
+                                saveDir,   ## The name of the directory that you want to save ?necessay or note
                                 Dataframe_Obj, 
                                 oldsamplename_format,
                                 newsamplename_format,
@@ -46,8 +50,15 @@ getinclusionworklist<- function(featurenames,  ## a
                                 instrumentName = c("Zoidberg", "Fry"),
                                 rententiontime_threshold=20,
                                 samplesplitlistmark="£",
-                                minute_to_second=F){
+                                minute_to_second=F,
+                                batch=1,
+                                Week=1,
+                                Date,
+                                phase="RP"
+                                ){
 ## 1. save the feauture names and feature dataframe in an object 
+  if(missing(Date)){Date=format(Sys.Date(), 
+                                format="%Y-%m-%d")}
   if(missing(splitfeatures_withcloserententiontime)){
     stop("You need to specify if you want to separate rentention time")
   }
@@ -70,7 +81,7 @@ getinclusionworklist<- function(featurenames,  ## a
   rtTest <- ifelse(rtOrNot, "1", "")
   
   if(instrumentName=="Zoidberg"){
-    instrumentPath <- paste0("D:\\MassHunter\\Data\\Metabolomics\\", saveDir, "\\")
+    instrumentPath <- paste0("D:\\MassHunter\\Data\\Metabolomics\\MetID\\",batch,  "\\")
     methodMS2 <- "D:\\MassHunter\\Methods\\Metabolomics\\MS2 Targeted\\"
     
     if(chromPol=="RP"){
@@ -81,7 +92,7 @@ getinclusionworklist<- function(featurenames,  ## a
       chromPolAbbrev <- "RP_NEG"
     }
   } else if(instrumentName=="Fry") {
-    instrumentPath <- paste0("E:\\MassHunter\\Data\\Metabolomics\\", saveDir, "\\")
+    instrumentPath <- paste0("E:\\MassHunter\\Data\\Metabolomics\\MetID\\",batch, "\\")
     methodMS2 <- "E:\\MassHunter\\Methods\\Metabolomics\\MS2 Targeted\\"
     
     if(chromPol=="RP"){
@@ -227,9 +238,17 @@ getinclusionworklist<- function(featurenames,  ## a
     
       
       sampleSet$directory[i] <- paste0(
+        instrumentPath,
         format(Sys.Date(), format="%Y-%m-%d"),
-        "_MS2_RP_POS_",
-        sampleSet$sampleNames[i]
+        "_",
+        batch,
+        "W",
+        Week,
+        "_",
+        "RP_POS-",
+        sampleSet$sampleNames[i],
+        "_MS2"
+        
       )
       
     } else {
@@ -251,43 +270,53 @@ getinclusionworklist<- function(featurenames,  ## a
       sampleSet$directory[i] <- paste0(
         instrumentPath,
         format(Sys.Date(), format="%Y-%m-%d"),
-        "_MS2_RP_NEG_",
-        sampleSet$sampleNames[i]
+        "_",
+        batch,
+        "W",
+        Week,
+        "_",
+        "RP_NEG-",
+        sampleSet$sampleNames[i],
+        "_MS2"
+        
+
       )
       
     }
   }
   
   #### Write work list ####
-  workListTemplate<-data.frame(matrix(ncol=14))
+  workListTemplate<-data.frame(matrix(ncol=14+7))  # add aditionally 8 columns
   #Headers
-  workListTemplate[1,] <- c("CHARGE", "Well content", "STUDY INJ ID", "Position", 
-                            "DATA", "", "", "", "", "", "", "", "", "Method")
-  
+  workListTemplate[1,] <- c(
+     "Path","Date", "","Batch","Week","","Phase",  ## add aditionally 8 columns
+                            "CHARGE", "Well content", "STUDY INJ ID", "Position", 
+                            "DATA", "", "", "", "", "", "", "", "", "Method" )
+  workListTemplate[2,1:7] <-c("D:/MassHunter/Data/Metabolomics/MetID",Date, "/_",batch,Week,"_",phase)
   #Sample names
-  workListTemplate[2:(length(sampleSet$sampleNames)*2+10), 1] <- ifelse(chromPol=="RP","POS","NEG")
-  workListTemplate[2:5,2] <- "blank"
-  workListTemplate[6:7,2] <- "solv-blank"
-  workListTemplate[8:10,2] <- "cond"
-  workListTemplate[11:(length(sampleSet$sampleNames)*2+10),2] <- rep(sampleSet$sampleNames, each=2)
+  workListTemplate[2:(length(sampleSet$sampleNames)*2+10), 1+7] <- ifelse(chromPol=="RP","POS","NEG")
+  workListTemplate[2:5,2+7] <- "blank"
+  workListTemplate[6:7,2+7] <- "solv-blank"
+  workListTemplate[8:10,2+7] <- "cond"
+  workListTemplate[11:(length(sampleSet$sampleNames)*2+10),2+7] <- rep(sampleSet$sampleNames, each=2)
   for(i in seq(12, length(sampleSet$sampleNames)*2+10, 2)){
-    workListTemplate[i,2] <- paste0(workListTemplate[i,2], "_MS2")
+    workListTemplate[i,2+7] <- paste0(workListTemplate[i,2+7], "_MS2")
   }
   
   #Injection numbers
-  workListTemplate[2:nrow(workListTemplate),3]<-c(1:(nrow(workListTemplate)-1))
-  workListTemplate[2:10,3] <- paste0("00",workListTemplate[2:10,3])
+  workListTemplate[2:nrow(workListTemplate),3+7]<-c(1:(nrow(workListTemplate)-1))
+  workListTemplate[2:10,3+7] <- paste0("00",workListTemplate[2:10,3+7])
   #If less than 100 add "0" to highest number
   if(nrow(workListTemplate) < 101){
-    workListTemplate[11:nrow(workListTemplate),3] <- paste0("0",workListTemplate[11:nrow(workListTemplate),3])
+    workListTemplate[11:nrow(workListTemplate),3+7] <- paste0("0",workListTemplate[11:nrow(workListTemplate),3+7])
   } else {
-    workListTemplate[11:101,3] <- paste0("0",workListTemplate[11:101,3])
+    workListTemplate[11:101,3+7] <- paste0("0",workListTemplate[11:101,3+7])
   }
   
   #Position in sample holder, DATA and Method
-  workListTemplate[2:5,4] <- "No injection"
-  workListTemplate[6:7,4] <- "P1-A1"
-  workListTemplate[8:10,4] <- "Vial 2"
+  workListTemplate[2:5,4+7] <- "No injection"
+  workListTemplate[6:7,4+7] <- "P1-A1"
+  workListTemplate[8:10,4+7] <- "Vial 2"
   
   samps <- 1
   numbers <- c("1", "2", "3", "4", "5", "6", "7", "8", "9")
@@ -297,40 +326,49 @@ getinclusionworklist<- function(featurenames,  ## a
   #Filling in position
   for(i in 1:length(baseSamples)){
     
-    workListTemplate[grepl(baseSamples[i], workListTemplate[,2]), 4] <- paste0(ifelse(samps>54, 
+    workListTemplate[grepl(baseSamples[i], workListTemplate[,2+7]), 4+7] <- paste0(ifelse(samps>54, 
                                                                                       plates[2], 
                                                                                       plates[1]), 
                                                                                "-", 
                                                                                letters[floor(samps/10)+1%%9], 
-                                                                               numbers[round(samps%%9)])
+                                                                               numbers[round(samps%%9)+1])
     
     samps <- samps+1
   }
   
   #Filling in method and DATA
-  workListTemplate[2:10,14] <- methodMS1
-  workListTemplate[2:10, 5] <- paste0(instrumentPath, 
-                                      format(Sys.Date(), 
-                                             format="%Y-%m-%d"), 
+  workListTemplate[2:10,14+7] <- methodMS1
+  workListTemplate[2:10, 5+7] <- paste0(instrumentPath, 
+                                      Date, "_",batch,"W",Week,
                                       "_", chromPolAbbrev,
-                                      "_", workListTemplate[2:10,2])
+                                      "_", workListTemplate[2:10,2+7])
+  workListTemplate[2:10, 5+7] <- paste0(workListTemplate[2:10, 5+7] ,
+                                        "_", workListTemplate[2:10,3+7])
   for(i in 1:(length(sampleSet$sampleNames)*2)){
-    workListTemplate[i+10, 5] <- paste0(instrumentPath, 
-                                        sampleSet$directory[ceiling(i/2)], 
-                                        "_", 
-                                        workListTemplate[i+10,3])
+    workListTemplate[i+10, 5+7] <- paste0(instrumentPath, 
+                                        Date,"_",batch,"W",Week, "_",chromPolAbbrev,
+                                        "_", workListTemplate[i+10, 2+7],"_MS2_",
+                                        workListTemplate[i+10,3+7])
     if(i%%2==1){
-      workListTemplate[i+10, 5] <- str_replace(workListTemplate[i+10, 5], "_MS2", "")
+      workListTemplate[i+10, 5+7] <- str_replace(workListTemplate[i+10, 5+7], "_MS2", "")
     }
-    workListTemplate[i+10, 14] <- ifelse((i%%2)==1, methodMS1, paste0(methodMS2, "\\", saveDir, "\\", sampleSet$directory[ceiling(i/2)],".m"))
+    else{
+      workListTemplate[i+10, 5+7] <- str_replace(workListTemplate[i+10, 5+7], "_MS2_MS2_", "_MS2_")
+    }
+    workListTemplate[i+10, 14+7] <- ifelse((i%%2)==1, 
+                                           methodMS1, 
+                                           paste0(methodMS2,  "MetID", "\\", 
+                                                  Date,"_",workListTemplate[i+10-1, 2+7],
+                                                  "_",chromPolAbbrev,"-MS2",".m")
+                                           )
   }
-  
+
   #Removing all double dashes
-  workListTemplate[,5] <- str_replace_all(workListTemplate[,5], pattern="\\\\", replacement="//")
-  workListTemplate[,5] <- str_replace_all(workListTemplate[,5], pattern="//", replacement="/")
-  workListTemplate[,14] <- str_replace_all(workListTemplate[,14], pattern="\\\\", replacement="//")
-  workListTemplate[,14] <- str_replace_all(workListTemplate[,14], pattern="//", replacement="/")
-  
+  workListTemplate[,5+7] <- str_replace_all(workListTemplate[,5+7], pattern="\\\\", replacement="//")
+  workListTemplate[,5+7] <- str_replace_all(workListTemplate[,5+7], pattern="//", replacement="/")
+  workListTemplate[,14+7] <- str_replace_all(workListTemplate[,14+7], pattern="\\\\", replacement="//")
+  workListTemplate[,14+7] <- str_replace_all(workListTemplate[,14+7], pattern="//", replacement="/")
+  #workListTemplate[,14+7] <- str_replace_all(workListTemplate[,14+7], pattern="\\", replacement=\")
   write.xlsx(workListTemplate, 
              paste0(format(Sys.Date(), 
                            format="%Y-%m-%d"),

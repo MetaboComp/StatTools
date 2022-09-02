@@ -32,7 +32,7 @@ change_name<-function(X,
   
   if(missing(remove_rest)){remove_rest=F}
   if(remove_rest==F){
-  X_new<-X
+  
   
   for(i in 1:length(oldname_format)){
     X_new<-gsub(oldname_format[i], 
