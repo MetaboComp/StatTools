@@ -37,7 +37,7 @@ getinclusionworklist<- function(featurenames,  ## a
                                 oldfeaturename_format,
                                 newfeaturename_format,
                                 featurename_removerest=F, 
-                                Dir,   
+                                Dir=getwd(),   
                                 Dataframe_Obj, 
                                 oldsamplename_format,
                                 newsamplename_format,
