@@ -1,4 +1,5 @@
-#' @param saveDir A directory you want to save the features and generate files. (You need to manually setwd() before doing this)
+
+#' @param Dir The directory where you want to save every thing of your output
 #' @param Dataframe_Obj A DATAFRAME with rows as as sample and columns as covariates/features (even one column in dataframe format), which must contain the feature aames you want to find 
 #' The rownames are names in a format theat is easy to change, colnames are feature names
 #' @param featurenames A vector of feature names. It must look like a format that is easy to change. for example RP_neg_674_3536a5_84 is okay
@@ -36,7 +37,7 @@ getinclusionworklist<- function(featurenames,  ## a
                                 oldfeaturename_format,
                                 newfeaturename_format,
                                 featurename_removerest=F, 
-                                saveDir,   ## The name of the directory that you want to save ?necessay or note
+                                Dir,   
                                 Dataframe_Obj, 
                                 oldsamplename_format,
                                 newsamplename_format,
@@ -56,6 +57,8 @@ getinclusionworklist<- function(featurenames,  ## a
                                 Date,
                                 phase="RP"
                                 ){
+  if(!missing((Dir))){setwd(Dir)}
+
 ## 1. save the feauture names and feature dataframe in an object 
   if(missing(Date)){Date=format(Sys.Date(), 
                                 format="%Y-%m-%d")}
