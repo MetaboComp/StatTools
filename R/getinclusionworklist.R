@@ -229,8 +229,9 @@ getinclusionworklist<- function(Dir=getwd(),
         incListTemplate,
         paste0(
           format(Sys.Date(), format="%Y-%m-%d"),
-          "_MS2_RP_POS_",
+          "_",
           sampleSet$sampleNames[i],
+          "_RP_POS-MS2",
           ".csv"),
         col.names=FALSE,
         row.names=FALSE,
@@ -259,8 +260,10 @@ getinclusionworklist<- function(Dir=getwd(),
         incListTemplate,
         paste0(
           format(Sys.Date(), format="%Y-%m-%d"),
-          "_MS2_RP_NEG_",
+          "_",
           sampleSet$sampleNames[i],
+          "_RP_NEG-MS2",
+          
           ".csv"
         ),
         col.names=FALSE,
