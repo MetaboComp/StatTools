@@ -374,6 +374,9 @@ getinclusionworklist<- function(Dir=getwd(),
 
   workListTemplate[,14+7] <- str_replace_all(workListTemplate[,14+7], 
                                              pattern="/", 
+                                           replacement="\\\\")
+  workListTemplate[,5+7] <- str_replace_all(workListTemplate[,5+7], 
+                                             pattern="/", 
                                              replacement="\\\\")
   write.xlsx(workListTemplate, 
              paste0(format(Sys.Date(), 
