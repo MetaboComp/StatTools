@@ -33,11 +33,11 @@
 #' @return sampleSet
 
 
-getinclusionworklist<- function(featurenames,  ## a 
+getinclusionworklist<- function(Dir=getwd(), 
+                                featurenames,  ## a 
                                 oldfeaturename_format,
                                 newfeaturename_format,
                                 featurename_removerest=F, 
-                                Dir=getwd(),   
                                 Dataframe_Obj, 
                                 oldsamplename_format,
                                 newsamplename_format,
@@ -57,7 +57,7 @@ getinclusionworklist<- function(featurenames,  ## a
                                 Date,
                                 phase="RP"
                                 ){
-  if(!missing((Dir))){setwd(Dir)}
+  if(!missing(Dir)){setwd(Dir)}
 
 ## 1. save the feauture names and feature dataframe in an object 
   if(missing(Date)){Date=format(Sys.Date(), 
