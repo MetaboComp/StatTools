@@ -1,5 +1,3 @@
-#' This function is to check for overlapping of values or dataframe columns in different objects.
-#' You could see this as a venn diagram but in nicer text version. It does not have the limitation of venn diagram that only at most 5-6 object can be shown together
 #' 
 #' 
 #' 

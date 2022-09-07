@@ -1,34 +1,35 @@
 
-#' @param Dir The directory where you want to save every thing of your output
-#' @param Dataframe_Obj A DATAFRAME with rows as as sample and columns as covariates/features (even one column in dataframe format), which must contain the feature aames you want to find 
-#' The rownames are names in a format theat is easy to change, colnames are feature names
+#' @param Dir The directory where you want to save every thing of your output (It is different from the saveDir)
+#' @param Dataframe_Obj A DATAFRAME with rows as as sample and columns as covariates/features (even one column,it should be in dataframe format), which must contain the feature names you want to find,otherwise you get an error 
+#' The rownames are names in a format that is easy to change, colnames are feature names
 #' @param featurenames A vector of feature names. It must look like a format that is easy to change. for example RP_neg_674_3536a5_84 is okay
 
-#' @param oldfeaturename_format a vector,what you want to change. 
-#' @param newfeaturename_format a vector, what you want to change to note that your new name should be Mass, splitmark, rentension time
-#' @param featurename_removerest logical, remove the rest of the name or not
-#' @param oldsamplename_format a vector,what you want to change. 
-#' @param newsamplename_format a vector, what you want to change to 
-#' @param samplename_removerest logical, remove the rest of the name or not
+#' @param oldfeaturename_format a vector,what part in the feature name you want to change. Do not use $
+#' @param newfeaturename_format a vector, what you want to change to for specific part of feature name, note that your new name should be Mass, splitmark, retention time. Do not use $
+#' @param featurename_removerest logical, remove the rest of the name or not (the part in the name that is not changed)
+#' 
+#' @param oldsamplename_format a vector,what part in the sample name you want to change. Do not use $
+#' @param newsamplename_format a vector, what you want to change to for specific parts of sample name. Do not use $
+#' @param samplename_removerest logical, remove the rest of the name or not (the part in the name that is not changed)
 
 #' @param minute_to_second, logical, change retention time from minute to seconds
 #' @param rtOrNot Whether to use RT window when doing MS2 or not, default = False because usually we won't know where something is and there used to be trouble with the window historically
 #' @param chromPol Either RN or RP
 #' @param instrumentName Either Zoidberg or Fry
 
-#' @param splitmark  ## the mark you used to separate mass and retension time
-#' @param percentage What is the percentage thereshold that you want to selectrelatively highest features
+#' @param splitmark The mark you used to separate mass and retention time. For example "@"
+#' @param percentage What is the percentage threshold that you want to select relatively highest features
 
 #' @param splitfeatures_withcloserententiontime logical, if true, use split sample feature function
-#' @param rententiontime_threshold  Usable when splitfeatures_withcloserententiontime is T
-#' @param samplesplitlistmark  Usable when splitfeatures_withcloserententiontime is T
+#' @param rententiontime_threshold  What difference value is considered as close. Usable when splitfeatures_withcloserententiontime is T
+#' @param samplesplitlistmark  A split mark for split samples. Usable when splitfeatures_withcloserententiontime is T
 
 #' @param mergesamples_withfarthermz To be developed, logical, this is only for the sake of people in CMSI to create method conveniently
 #' @param mergesamples_withfarthermz To be developed, default 10
-#' @param batch
-#' @param Date
-#' @param Week 
-#' @param phase
+#' @param batch  Batch on Worklist
+#' @param Date   Date on Worklist
+#' @param Week  Week on Worklist
+#' @param phase  Phase on Worklist
 #' @export
 #' @return sampleSet
 

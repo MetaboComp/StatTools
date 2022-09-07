@@ -1,3 +1,4 @@
+#' Do not use $ or \ to mess things up
 #' @param X a vector of names
 #' @param oldname_format a vector,what you want to change. 
 #' @param newname_format a vector, what you want to change to 
