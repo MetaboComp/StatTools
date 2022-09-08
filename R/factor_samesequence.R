@@ -23,9 +23,9 @@ factor_samesequence<-function(X,level,sequence){
   X_factor<-factor(XX,levels=X_levels)
   }
   if(sequence==T){
-    X=factor(X,levels=unique(X))
+    X_factor=factor(X,levels=unique(X))
   }
   }
-  if(!missing(level)){X<-factor(X,levels=level)}
+  if(!missing(level)){X_factor<-factor(X,levels=level)}
   return(X_factor)
 }
