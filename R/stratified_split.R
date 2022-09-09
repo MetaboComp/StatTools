@@ -9,8 +9,9 @@ stratified_split<-function(X,Y,k){
   fold<-createFolds(y=Y, k = k)  ###stratified spliting
   data_folds<-list()
   for(i in 1:k){
-    data_folds[[i]]<-data[fold[[i]],]
+    data_folds[[i]]<-X[fold[[i]],]
   }
+  data<-list()
   data$X<-data_folds
   data$Y<-fold
   return(data)

@@ -8,7 +8,8 @@
 getBER<-function (actual, predicted)
 {
   if (length(actual) != length(predicted)) stop ("Mismatch in length of arguments")
-  if (!is.factor(actual)) actual = factor(actual)
+  if (!is.factor(actual)) {actual = factor(actual)}
+  predicted=factor(predicted,levels=levels(actual))
   levs = levels(actual)
   nlevs = length(levs)
   confMat = matrix(0, nrow=nlevs, ncol=nlevs + 1)

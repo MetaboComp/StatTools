@@ -7,8 +7,8 @@
 #' @export
 getAUROC<-function (actual, predicted){
   if(length(actual)!=length(predicted)){stop("Must have same length")}
-  if (!is.factor(actual)) actual = factor(actual)
-  
+  if (!is.factor(actual)) {actual = factor(actual)}
+  if (!is.factor(predicted)) {predicted = factor(predicted,levels = levels(actual))}
   auc <- vector(length=length(levels(actual)))
 
   for (cl in 1:length(levels(actual))) {
