@@ -7,7 +7,7 @@
 
 stratified_split<-function(X,Y,k){
   library(caret)
-  fold<-createFolds(y=Y, k = k)  ###stratified spliting
+  fold<-caret::createFolds(y=Y, k = k)  ###stratified spliting
   data_folds<-list()
   data<-list()
   data$Y<-list()
