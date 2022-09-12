@@ -13,6 +13,6 @@ stratified_split<-function(X,Y,k){
   }
   data<-list()
   data$X<-data_folds
-  data$Y<-fold
+  data$Y<-Y[fold]
   return(data)
 }
