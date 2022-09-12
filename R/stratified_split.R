@@ -8,11 +8,16 @@ stratified_split<-function(X,Y,k){
   library(caret)
   fold<-createFolds(y=Y, k = k)  ###stratified spliting
   data_folds<-list()
+  data<-list()
+  data$Y<-list()
   for(i in 1:k){
     data_folds[[i]]<-X[fold[[i]],]
+    
   }
-  data<-list()
+  for(i in 1:k){
+  data$Y[[i]]<-Y[fold[[i]]]
+  }
   data$X<-data_folds
-  data$Y<-Y[fold]
+  
   return(data)
 }
