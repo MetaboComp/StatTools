@@ -1,3 +1,4 @@
+#' split randomly
 #' @param X a dataframe
 #' @param Y a vector
 #' @param k k fold

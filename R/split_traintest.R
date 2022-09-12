@@ -1,3 +1,4 @@
+#' split traintest
 #' @param X a dataframe
 #' @param Y a vector
 #' @param ratio ratio

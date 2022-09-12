@@ -1,3 +1,4 @@
+#' split sample features
 #' @param sampleNames A vector with sample names
 #' @param sampleFeatures  A series of list that we want to investigate
 #' @param rententiontime_threshold the difference of time point that we want to specify

@@ -1,3 +1,4 @@
+#' Stratified split
 #' @param X a dataframe
 #' @param Y a vector
 #' @param k kfold

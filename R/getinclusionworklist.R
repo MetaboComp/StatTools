@@ -16,7 +16,7 @@
 #' @param rtOrNot Whether to use RT window when doing MS2 or not, default = False because usually we won't know where something is and there used to be trouble with the window historically
 #' @param chromPol Either RN or RP
 #' @param instrumentName Either Zoidberg or Fry
-
+#' get inclusion list
 #' @param splitmark The mark you used to separate mass and retention time. For example "@"
 #' @param percentage What is the percentage threshold that you want to select relatively highest features
 

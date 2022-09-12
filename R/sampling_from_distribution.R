@@ -1,3 +1,4 @@
+#'Sampling from distribution
 #'@param X a vector (numeric or factor) where the distribution/probabalitywill be generated 
 #'@param upperlimit if X is numeric, set upper limit
 #'@param lowerlimit if X is numeric, set lower limit
