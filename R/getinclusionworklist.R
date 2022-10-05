@@ -58,6 +58,9 @@ getinclusionworklist<- function(Dir=getwd(),
                                 Date,
                                 phase="RP"
                                 ){
+  library(stringr)
+  library(openxlsx)
+  library(stringi)
   if(!missing(Dir)){setwd(Dir)}
 
 ## 1. save the feauture names and feature dataframe in an object 
