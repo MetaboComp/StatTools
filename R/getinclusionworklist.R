@@ -122,12 +122,16 @@ getinclusionworklist<- function(Dir=getwd(),
   
   ## since at this point sample names and feature names are rownames and colnames are the table, we change the name format here
   
+  
+  
   if(!missing(oldfeaturename_format)&!missing(newfeaturename_format)){
     features<-change_name(X=featurenames,
                 oldname_format=oldfeaturename_format,
                 newname_format=newfeaturename_format,
                 remove_rest = featurename_removerest)
     colnames(table)<-features
+  } else {features<-featurenames
+  colnames(table)<-features
   }
   if(!missing(oldsamplename_format)&!missing(newsamplename_format)){
     samplenames_new<-change_name(X=rownames(table),
@@ -136,7 +140,8 @@ getinclusionworklist<- function(Dir=getwd(),
                           remove_rest = samplename_removerest)
     rownames(table)<- samplenames_new
     
-  }
+  }else{samplenames_new<-rownames(table)
+    rownames(table)<-samplenames_new}
 
   #### Figuring out which combinations of samples are the optimum combination
 
