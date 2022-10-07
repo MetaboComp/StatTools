@@ -36,6 +36,7 @@
 
 getinclusionworklist<- function(Dir=getwd(), 
                                 featurenames,  ## a 
+                               
                                 oldfeaturename_format,
                                 newfeaturename_format,
                                 featurename_removerest=F, 
@@ -45,7 +46,8 @@ getinclusionworklist<- function(Dir=getwd(),
                                 samplename_removerest=F,
                                 splitmark="@",  
                                 rtOrNot=F, 
-                                percentage=0.1,
+                                percentage=0.1, 
+                                ##by percentage of intensity not by rank
                                 chromPol, 
                                 splitfeatures_withcloserententiontime,
                                 mergesamples_withfarthermz=T,
@@ -155,12 +157,17 @@ getinclusionworklist<- function(Dir=getwd(),
     rownames(scorematrix) <- rownames(table)
     ## order gives the position from the smallest to biggest number 
     ## for example order(c(6,4,7,8,1,3)) gives [1] 5 6 2 1 3 4, which means the first small number is at the 5th position
+#######################################################################################################
     for(j in 1:ncol(table)){
-      temphigh <- order(table[,j],    ##gives the position from the biggest to smallest number in each column
-                        decreasing=T)[1:round(nrow(Dataframe_Obj)*percentage)]  ## re rank it from biggest to smallest and choose the top 10% higest peak
-      scorematrix[temphigh,j] <- 1  ## give this positions as 1
+      for(s in 1:nrow(table)){
+      if(table[i,j]>=table[which.max(table[,j]),j]*percentage){}
+        scorematrix[i,j]<-1
+      }
+      #temphigh <- order(table[,j],    ##gives the position from the biggest to smallest number in each column
+      #                  decreasing=T)[1:round(nrow(Dataframe_Obj)*percentage)]  ## re rank it from biggest to smallest and choose the top 10% higest peak
+
     }
-    
+##############################################################################################    
     whsamp <- which.max(rowSums(scorematrix))  
     ## select the row position which gives the highest rowsum
     
