@@ -146,7 +146,7 @@ getinclusionworklist<- function(Dir=getwd(),
     rownames(table)<-samplenames_new}
 
   #### Figuring out which combinations of samples are the optimum combination
-
+  #table_original<-table
   while(is.data.frame(table)){
     i <- i+1
 
@@ -160,8 +160,8 @@ getinclusionworklist<- function(Dir=getwd(),
 #######################################################################################################
     for(j in 1:ncol(table)){
       for(s in 1:nrow(table)){
-      if(table[i,j]>=table[which.max(table[,j]),j]*percentage){
-        scorematrix[i,j]<-1}
+      if(table[s,j]>=table[which.max(table[,j]),j]*percentage){
+        scorematrix[s,j]<-1}
       }
       #temphigh <- order(table[,j],    ##gives the position from the biggest to smallest number in each column
       #                  decreasing=T)[1:round(nrow(Dataframe_Obj)*percentage)]  ## re rank it from biggest to smallest and choose the top 10% higest peak
