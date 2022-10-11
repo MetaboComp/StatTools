@@ -322,7 +322,7 @@ getinclusionworklist<- function(Dir=getwd(),
   workListTemplate[8:10,2+7] <- "cond"
   workListTemplate[11:(length(sampleSet$sampleNames)*2+10),2+7] <- rep(sampleSet$sampleNames, each=2)
   for(i in seq(12, length(sampleSet$sampleNames)*2+10, 2)){
-    workListTemplate[i,2+7] <- paste0(workListTemplate[i,2+7], "_MS2")
+    workListTemplate[i,2+7] <- paste0(workListTemplate[i,2+7], "-MS2")
   }
   
   #Injection numbers
@@ -372,10 +372,10 @@ getinclusionworklist<- function(Dir=getwd(),
                                         "_", workListTemplate[i+10, 2+7],"_MS2_",
                                         workListTemplate[i+10,3+7])
     if(i%%2==1){
-      workListTemplate[i+10, 5+7] <- str_replace(workListTemplate[i+10, 5+7], "_MS2", "")
+      workListTemplate[i+10, 5+7] <- str_replace(workListTemplate[i+10, 5+7], "_MS2", "-MS1")
     }
     else{
-      workListTemplate[i+10, 5+7] <- str_replace(workListTemplate[i+10, 5+7], "_MS2_MS2_", "_MS2_")
+      workListTemplate[i+10, 5+7] <- str_replace(workListTemplate[i+10, 5+7], "-MS2_MS2_", "-MS2_")
     }
     workListTemplate[i+10, 14+7] <- ifelse((i%%2)==1, 
                                            methodMS1, 
@@ -406,6 +406,7 @@ getinclusionworklist<- function(Dir=getwd(),
                     ), 
              col.names=FALSE)
   saveRDS(sampleSet, paste0("Report",ifelse(chromPol=="RP","POS","NEG"),".rds"))
+  names(sampleSet$sampleFeatures)<-sampleSet$sampleNames
   return(sampleSet)
   
 }
