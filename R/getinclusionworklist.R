@@ -1,4 +1,4 @@
-
+#' Please consult King Yan if smth is not clear
 #' @param Dir The directory where you want to save every thing of your output (It is different from the saveDir)
 #' @param Dataframe_Obj A DATAFRAME with rows as as sample and columns as covariates/features (even one column,it should be in dataframe format), which must contain the feature names you want to find,otherwise you get an error 
 #' The rownames are names in a format that is easy to change, colnames are feature names
