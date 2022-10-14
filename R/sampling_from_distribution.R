@@ -6,7 +6,7 @@
 #'If not specified, it is 5% of the range
 #'@param n How many you want to sample
 #'@export
-#'@return
+#'@return a resampled thing
 
 sampling_from_distribution<-function(X,
                                      upperlimit,

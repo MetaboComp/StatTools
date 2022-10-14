@@ -3,8 +3,8 @@
 #' @param Y  A vector/dataframe of one Y variable (needs to be numeric)
 #' @param C A data frame of covariates (All variables needs to be numeric)
 #' @param cor_method from cor()
-#' @return A vector with adjusted partial correlations
 #' @export
+#' @return A vector with adjusted partial correlations
 #'
 #' 
 #' install.packages(remotes)

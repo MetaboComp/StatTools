@@ -34,6 +34,16 @@ rfImp(
 }
 \value{
 Object (list)
+
+MAT=matrix(runif(100000),nrow=40) # Generate synthetic (random) data
+MAT[sample(1:100000,size = 1000)] <- NA # Punch 1000 random holes in the data
+library(doParallel)
+nCore=detectCores()-1
+cl=makeCluster(nCore)
+registerDoParallel(cl)
+ImputationObject <- rfImp(MAT = MAT, tolerance=0.05, maxIter=5) # Quick'n'Dirty settings for imputation
+stopCluster(cl)
+MAT_Imp <- ImputationObject$peakTable
 }
 \description{
 Perform random forest imputation of missing values

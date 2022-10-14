@@ -17,6 +17,15 @@ pCor(X, Y, C, cor_method = c("pearson", "kendall", "spearman"))
 }
 \value{
 A vector with adjusted partial correlations
+
+
+install.packages(remotes)
+library(remotes)
+install_gitlab('CarlBrunius/MUVR@MUVR2')
+library(MUVR)
+X=Xotu[,1:4]
+Y=as.numeric(Yotu)
+C=Xotu[,5:7]
 }
 \description{
 This function aims to construct one more flexible pcor()

@@ -3,9 +3,8 @@
 #' Convenience function to draw a Venn diagram directly in the plot window without exporting to a file
 #' @param x Same as for the `venn.diagram()` function, i.e. a list of names
 #' @param ... Standard `venn.diagram()` arguments 
-#'
-#' @return
 #' @export
+#' @return a venn diagram
 #'
 #' @examples
 #' StatTools::venn(x = list(set1 = sample(letters)[1:10], set1 = sample(letters)[1:15], set1 = sample(letters)[1:20]))

@@ -1,7 +1,7 @@
 #' Please consult King Yan if smth is not clear
 #' One important thing is that you need to set your directory correctly before using the function
 #' You need to double check if your xlsx file name is correct
-#' @param Dir
+#' @param Dir directory
 #' @param File_first The first file, POS or NEG, end with xlsx
 #' @param File_second The first file, POS or NEG, end with xlsx
 #' @param MS_type you need to specify if the work list is for MS1 or MS2. In most cases MS2

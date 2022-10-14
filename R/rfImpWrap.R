@@ -10,9 +10,8 @@
 #' @param n1 MaxIter for 1st iteration (defaults to 15)
 #' @param tol2 Tolerance in 2nd iteration (defaults to 0.05)
 #' @param n2 MaxIter for 2nd iteration (defaults to 15)
-#'
-#' @return A data matrix with imputed values
 #' @export
+#' @return A data matrix with imputed values
 #' 
 #' MAT=matrix(runif(100000),nrow=40) # Generate synthetic (random) data
 #' MAT[sample(1:100000,size = 1000)] <- NA # Punch 1000 random holes in the data

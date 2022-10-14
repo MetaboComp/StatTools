@@ -13,9 +13,9 @@
 #' @param verbose Boolean for verbose output
 #' @param parallel Whether to perform imputation in parallel (register backend if TRUE!)
 #'
-#' @return Object (list)
-#' @export
 #' 
+#' @export
+#' @return Object (list)
 #' MAT=matrix(runif(100000),nrow=40) # Generate synthetic (random) data
 #' MAT[sample(1:100000,size = 1000)] <- NA # Punch 1000 random holes in the data
 #' library(doParallel)

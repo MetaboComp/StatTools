@@ -15,9 +15,8 @@
 #'         a<-Transform_fac_num(factor(c(1,2,3),levels=c("3","1","2"))). When levels(a), the output is 1,2,3.
 #'
 #' @param ordinal A dataframe with ordinal variables and numeric variables
-
-#' @return A dataframe with imputed values
 #' @export
+#' @return A dataframe with imputed values
 #'
 #' install.packages("remotes")
 #' library(remotes)

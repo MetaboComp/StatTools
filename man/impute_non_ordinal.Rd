@@ -11,6 +11,20 @@ impute_non_ordinal(non_ordinal)
 }
 \value{
 A dataframe with imputed values
+
+install.packages("remotes")
+library(remotes)
+install_gitlab('CarlBrunius/MUVR')
+library(MUVR)
+factor_1<-factor(c(rep("a",8),rep("b",8),rep("c",8),rep("d",5)))
+factor_2<-as.character(c(rep("f",5),rep("e",8),rep("h",5),rep("g",11)))
+d<-cbind(factor_1,factor_2,Yotu)
+d[29,1]=NA
+d[28,2]=NA
+d[27,3]=NA
+e=Transform_fac_num(d)$dataframe
+f<-impute_non_ordinal(e)
+# f is the imputed data frame of d
 }
 \description{
 Preparation: To use this package, 1 steps need to be done beforehand:

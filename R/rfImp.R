@@ -8,9 +8,8 @@
 #' @param guess 1st guess ("median", i.e. median per feature; "minVar", minimum per variable (default); "minTotal", minimum of all variables; A matrix (imputed/full data matrix))
 #' @param verbose Boolean for verbose output
 #' @param parallel Whether to perform imputation in parallel (register backend if TRUE!)
-#'
-#' @return Object (list)
 #' @export
+#' @return Object (list)
 #' 
 #' MAT=matrix(runif(100000),nrow=40) # Generate synthetic (random) data
 #' MAT[sample(1:100000,size = 1000)] <- NA # Punch 1000 random holes in the data

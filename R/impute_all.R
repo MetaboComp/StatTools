@@ -20,9 +20,9 @@
 #'
 #' @param ordinal A dataframe with ordinal variables and numeric variables
 #' @param non-ordinal A dataframe with non-ordinal variables
-#' @return A dataframe with imputed values
+#' 
 #' @export
-#'
+#' @return A dataframe with imputed values
 #'
 #' install.packages("remotes")
 #' library(remotes)

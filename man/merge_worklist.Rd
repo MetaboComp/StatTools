@@ -9,6 +9,8 @@ You need to double check if your xlsx file name is correct}
 merge_worklist(Dir = getwd(), File_first, File_second, MS_type = "MS2")
 }
 \arguments{
+\item{Dir}{directory}
+
 \item{File_first}{The first file, POS or NEG, end with xlsx}
 
 \item{File_second}{The first file, POS or NEG, end with xlsx}

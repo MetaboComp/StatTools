@@ -18,6 +18,9 @@ If not specified, it is 5% of the range}
 
 \item{n}{How many you want to sample}
 }
+\value{
+a resampled thing
+}
 \description{
 Sampling from distribution
 }

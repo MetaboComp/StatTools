@@ -16,9 +16,9 @@
 #' @param nComp Number of PLS components (defaults to 2)
 #' @param rfMeth Which RF implementation to choose ('rf' (randomForest; default), 'ranger' or 'Rborist')
 #'
-#' @return A data matrix with imputed values
-#' @export
 #' 
+#' @export
+#' @return A data matrix with imputed values
 #' MAT=matrix(runif(100000),nrow=40) # Generate synthetic (random) data
 #' MAT[sample(1:100000,size = 1000)] <- NA # Punch 1000 random holes in the data
 #' MAT_Imp <- rfImpWrap(MAT = MAT) # Imputation using default values
