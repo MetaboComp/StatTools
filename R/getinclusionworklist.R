@@ -312,14 +312,17 @@ getinclusionworklist<- function(Dir=getwd(),
   #Headers
   workListTemplate[1,] <- c(
      "Path","Date", "","Batch","Week","","Phase",  ## add aditionally 8 columns
-                            "CHARGE", "Well content", "STUDY INJ ID", "Position", 
-                            "DATA", "", "", "", "", "", "", "", "", "Method" )
+     "CHARGE", "Well content", "STUDY INJ ID", "Position", 
+     "Injection volume(ug)","DATA", "", "", "", "", "", "", "",  
+     "Method" )
   workListTemplate[2,1:7] <-c("D:/MassHunter/Data/Metabolomics/MetID",Date, "/_",batch,Week,"_",phase)
   #Sample names
   workListTemplate[2:(length(sampleSet$sampleNames)*2+10), 1+7] <- ifelse(chromPol=="RP","POS","NEG")
   workListTemplate[2:5,2+7] <- "blank"
   workListTemplate[6:7,2+7] <- "solv-blank"
   workListTemplate[8:10,2+7] <- "cond"
+  
+  
   workListTemplate[11:(length(sampleSet$sampleNames)*2+10),2+7] <- rep(sampleSet$sampleNames, each=2)
   for(i in seq(12, length(sampleSet$sampleNames)*2+10, 2)){
     workListTemplate[i,2+7] <- paste0(workListTemplate[i,2+7], "-MS2")
@@ -358,24 +361,32 @@ getinclusionworklist<- function(Dir=getwd(),
     samps <- samps+1
   }
   
+  workListTemplate[2:10,5+7] <- "As Method"
+  for(i in 1:(length(sampleSet$sampleNames)*2)){
+    if(i%%2==1){workListTemplate[i+10, 5+7]<-"As Method"
+      
+    }else{workListTemplate[i+10, 5+7]<-10
+    }
+    }
+    
   #Filling in method and DATA
   workListTemplate[2:10,14+7] <- methodMS1
-  workListTemplate[2:10, 5+7] <- paste0(instrumentPath, 
+  workListTemplate[2:10, 6+7] <- paste0(instrumentPath, 
                                       Date, "_",batch,"W",Week,
                                       "_", chromPolAbbrev,
                                       "_", workListTemplate[2:10,2+7])
-  workListTemplate[2:10, 5+7] <- paste0(workListTemplate[2:10, 5+7] ,
+  workListTemplate[2:10, 6+7] <- paste0(workListTemplate[2:10, 6+7] ,
                                         "_", workListTemplate[2:10,3+7])
   for(i in 1:(length(sampleSet$sampleNames)*2)){
-    workListTemplate[i+10, 5+7] <- paste0(instrumentPath, 
+    workListTemplate[i+10, 6+7] <- paste0(instrumentPath, 
                                         Date,"_",batch,"W",Week, "_",chromPolAbbrev,
                                         "_", workListTemplate[i+10, 2+7],"_MS2_",
                                         workListTemplate[i+10,3+7])
     if(i%%2==1){
-      workListTemplate[i+10, 5+7] <- str_replace(workListTemplate[i+10, 5+7], "_MS2", "-MS1")
+      workListTemplate[i+10, 6+7] <- str_replace(workListTemplate[i+10, 6+7], "_MS2", "-MS1")
     }
     else{
-      workListTemplate[i+10, 5+7] <- str_replace(workListTemplate[i+10, 5+7], "-MS2_MS2_", "-MS2_")
+      workListTemplate[i+10, 6+7] <- str_replace(workListTemplate[i+10, 6+7], "-MS2_MS2_", "-MS2_")
     }
     workListTemplate[i+10, 14+7] <- ifelse((i%%2)==1, 
                                            methodMS1, 
@@ -386,15 +397,15 @@ getinclusionworklist<- function(Dir=getwd(),
   }
 
   #Removing all double dashes
-  workListTemplate[,5+7] <- str_replace_all(workListTemplate[,5+7], pattern="\\\\", replacement="//")
-  workListTemplate[,5+7] <- str_replace_all(workListTemplate[,5+7], pattern="//", replacement="/")
+  workListTemplate[,6+7] <- str_replace_all(workListTemplate[,6+7], pattern="\\\\", replacement="//")
+  workListTemplate[,6+7] <- str_replace_all(workListTemplate[,6+7], pattern="//", replacement="/")
   workListTemplate[,14+7] <- str_replace_all(workListTemplate[,14+7], pattern="\\\\", replacement="//")
   workListTemplate[,14+7] <- str_replace_all(workListTemplate[,14+7], pattern="//", replacement="/")
 
   workListTemplate[,14+7] <- str_replace_all(workListTemplate[,14+7], 
                                              pattern="/", 
                                            replacement="\\\\")
-  workListTemplate[,5+7] <- str_replace_all(workListTemplate[,5+7], 
+  workListTemplate[,6+7] <- str_replace_all(workListTemplate[,6+7], 
                                              pattern="/", 
                                              replacement="\\\\")
   write.xlsx(workListTemplate, 
