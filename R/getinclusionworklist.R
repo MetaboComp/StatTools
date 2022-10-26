@@ -46,7 +46,7 @@ getinclusionworklist<- function(Dir=getwd(),
                                 samplename_removerest=F,
                                 splitmark="@",  
                                 rtOrNot=F, 
-                                percentage=0.1, 
+                                percentage=0.9, 
                                 ##by percentage of intensity not by rank
                                 chromPol, 
                                 splitfeatures_withcloserententiontime,
