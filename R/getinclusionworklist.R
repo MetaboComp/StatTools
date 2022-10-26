@@ -18,7 +18,7 @@
 #' @param instrumentName Either Zoidberg or Fry
 #' getinclusionworklist
 #' @param splitmark The mark you used to separate mass and retention time. For example "@"
-#' @param percentage What is the percentage threshold that you want to select relatively highest features
+#' @param percentage What is the percentage threshold that you want to select relatively highest features. For example, 0.9 means you select features with intensity of at least 90% of the highest peak
 
 #' @param splitfeatures_withcloserententiontime logical, if true, use split sample feature function
 #' @param rententiontime_threshold  What difference value is considered as close. Usable when splitfeatures_withcloserententiontime is T

@@ -1,7 +1,7 @@
 #' Scan file names, copy to excel
 #' @param Dir directory where the folder is. This folder contains folder where contain all files with names you want to scan
 #' @param full_names logical, If you want the file names output with the directory names or not
-#' @param keyphrase a vector of key phase in the file names that separate the columns. Case sensitive
+#' @param keyphrase a vector of key phrase in the file names that separate the columns. Case sensitive
 #' @param rerank logical. Rerank base on the number at the
 #' @return a excel file and a dataframe
 #' @export
