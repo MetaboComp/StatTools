@@ -19,7 +19,7 @@
 
 pCor <- function(X,
                  Y,
-                 C=NULL,
+                 C,
                  cor_method=c("pearson", "kendall", "spearman")
 ) {
   if(missing(X)){stop("\n Must have a X")}
