@@ -22,13 +22,16 @@ pCor <- function(X,
                  C=NULL,
                  cor_method=c("pearson", "kendall", "spearman")
 ) {
-  
+  if(missing(X)){stop("\n Must have a X")}
+  if(missing(Y)){Y=X
+  cat("\n You don't have a Y, then we let Y = X")
+  }
   if(missing(cor_method)){cor_method="spearman"}
   if(cor_method!="pearson"&cor_method!="kendall"&cor_method!="spearman"){
-    stop("Wrong method, you idiot!")
+    stop("\n Wrong method, you idiot!")
   }
-  cat("In your X, Y and C, if you have variables that are non-numeric, they are transformed to numeric autonomatically. ")
-  cat("Be careful if you want this to happen or not")
+  cat("\n In your X, Y and C, if you have variables that are non-numeric, they are transformed to numeric autonomatically.\n")
+  cat("\n Be careful if you want this to happen or not")
   if(is.null(dim(X))){
     Xframe=data.frame(X)
     rownamesX<-rownames(Xframe)
@@ -101,7 +104,7 @@ pCor <- function(X,
   
   
   if(nrow(X)!=nrow(Y)){
-    stop("X and Y should have same number of observations")
+    stop("\n X and Y should have same number of observations")
   }
   
   
