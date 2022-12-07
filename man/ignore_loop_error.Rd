@@ -24,6 +24,9 @@ the code should be written in "..
 
 \item{output}{the variables names you want to save as output "", should be something in the recorded values}
 }
+\value{
+result
+}
 \description{
 This is for ignore loop errors (caused by extreme scenario of resampling or something else). 
 You should run the code and know for sure the error is not a "hard error"

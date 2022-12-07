@@ -11,6 +11,7 @@
 #'                                     the code should be written in "..
 #'                                                                  .. " With lines separate
 #' @param output the variables names you want to save as output "", should be something in the recorded values
+#' @return result
 #' @export       
 #' Note that in the "...", if there is a charater you need to specifiy, use ' '
 #' Note that you must guarantee that the  
