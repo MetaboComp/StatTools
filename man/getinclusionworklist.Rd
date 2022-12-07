@@ -16,7 +16,7 @@ getinclusionworklist(
   samplename_removerest = F,
   splitmark = "@",
   rtOrNot = F,
-  percentage = 0.1,
+  percentage = 0.9,
   chromPol,
   splitfeatures_withcloserententiontime,
   mergesamples_withfarthermz = T,
@@ -54,7 +54,7 @@ The rownames are names in a format that is easy to change, colnames are feature 
 
 \item{rtOrNot}{Whether to use RT window when doing MS2 or not, default = False because usually we won't know where something is and there used to be trouble with the window historically}
 
-\item{percentage}{What is the percentage threshold that you want to select relatively highest features}
+\item{percentage}{What is the percentage threshold that you want to select relatively highest features. For example, 0.9 means you select features with intensity of at least 90% of the highest peak}
 
 \item{chromPol}{Either RN or RP}
 

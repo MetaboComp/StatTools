@@ -2,14 +2,15 @@
 % Please edit documentation in R/pCor.R
 \name{pCor}
 \alias{pCor}
-\title{This function aims to construct one more flexible pcor()}
+\title{This function aims to construct one more flexible pcor()
+All X, Y C should be numeric}
 \usage{
 pCor(X, Y, C, cor_method = c("pearson", "kendall", "spearman"))
 }
 \arguments{
 \item{X}{A data frame of X variables (All variables needs to be numeric)}
 
-\item{Y}{A vector/dataframe of one Y variable (needs to be numeric)}
+\item{Y}{A dataframe ofY variables (needs to be numeric)}
 
 \item{C}{A data frame of covariates (All variables needs to be numeric)}
 
@@ -29,4 +30,5 @@ C=Xotu[,5:7]
 }
 \description{
 This function aims to construct one more flexible pcor()
+All X, Y C should be numeric
 }

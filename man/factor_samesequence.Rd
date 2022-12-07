@@ -7,7 +7,7 @@
 factor_samesequence(X, level, sequence)
 }
 \arguments{
-\item{X}{a factor variable}
+\item{X}{a factor variable or a character variable}
 
 \item{level}{levels if want to manually set}
 

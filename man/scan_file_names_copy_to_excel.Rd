@@ -11,9 +11,9 @@ scan_file_names_copy_to_excel(Dir, full_names = F, keyphrase, rerank = T)
 
 \item{full_names}{logical, If you want the file names output with the directory names or not}
 
-\item{keyphrase}{a vector of key phase in the file names that separate the columns. Case sensitive}
+\item{keyphrase}{a vector of key phrase in the file names that separate the columns. Case sensitive}
 
-\item{rerank}{logical}
+\item{rerank}{logical. Rerank base on the number at the}
 }
 \value{
 a excel file and a dataframe
