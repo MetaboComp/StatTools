@@ -56,7 +56,7 @@ mvImp=function(MAT,method=c('RF','PLS'),maxIter=15,tolerance=1e-2,guess=NULL,for
       }
     }
   } else {
-    if(dim(guess)!=dim(MAT)) stop("matrix dimensions of guess don't match MAT")
+    if(dim(guess)[1] !=dim(MAT)[1] && dim(guess)[2] !=dim(MAT)[2]) stop("matrix dimensions of guess don't match MAT")
     cat('First guess from user-specified matrix \n')
     impPT=guess
   }
