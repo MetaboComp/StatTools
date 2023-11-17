@@ -86,6 +86,12 @@ mvImp=function(MAT,method=c('RF','PLS'),maxIter=15,tolerance=1e-2,guess=NULL,for
     cat('Iteration',iteration,'\n')
     cat('',nrow(NAs),'NAs in',length(whichFeat),'features','\n')
     impPTnew=impPT
+    
+    if(length(whichFeat) == 0){
+      cat('No missing values found in table, no imputation necessary.\nReturning original matrix.')
+      return(MAT)
+    }
+    
     iterationResult=foreach(fi=1:length(whichFeat), .packages=pkg) %doVersion% {
       feat=whichFeat[fi] # Which feature to impute
       impVar <- colnames(MAT)[feat] # name of feature to impute
