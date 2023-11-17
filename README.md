@@ -29,7 +29,7 @@ install.packages('remotes')
 Install `StatTools` package by:
 ```
 library(remotes)
-install_gitlab('CarlBrunius/StatTools')
+install_github('MetaboComp/StatTools')
 
 ```
 
