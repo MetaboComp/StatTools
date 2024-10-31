@@ -36,6 +36,10 @@ mvImpWrap=function(MAT,guess=NULL,forceZero=FALSE,method=c('PLS','RF'),rfMeth=c(
   cat('Tolerance:',tol1,'\n')
   cat('maxIter:  ',n1,'\n')
   imp <- mvImp(MAT = MAT, forceZero=forceZero, method=method, rfMeth=rfMeth, nComp=nComp, guess = guess, maxIter = n1, tolerance = tol1, parallel = TRUE)
+  if(is.null(imp)){
+    stopCluster(cl)
+    return(NULL)
+  }
   time2 <- proc.time()[3]
   cat('\n\nSECOND ROUND: Imputation with "nicer" settings and 1st guess from FIRST ROUND\n')
   cat('Tolerance:',tol2,'\n')
