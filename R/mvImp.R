@@ -66,7 +66,8 @@ mvImp=function(MAT,method=c('RF','PLS'),maxIter=15,tolerance=1e-2,guess=NULL,for
   
   # Need at least 2 data points per variable to make regression!
   if (any(table(whichNA[,2])>(nSamp-2))) {
-    stop('You cannot train a model with variables with less than 2 data points!\n')
+    message('You cannot train a model with variables with less than 2 data points!\n')
+    return(NULL)
   }
   
   # Prep for iterations
